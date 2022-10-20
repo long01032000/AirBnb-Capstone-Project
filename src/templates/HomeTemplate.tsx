@@ -1,9 +1,15 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
+import Header from '../components/Header'
 
 type Props = {}
 
 export default function HomeTemplate({}: Props) {
   return (
-    <div>HomeTemplate</div>
+    <>
+    <Header />
+    <Outlet />
+    
+    </>
   )
 }
