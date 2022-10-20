@@ -1,0 +1,61 @@
+// ------------dashboard-------------
+.ant-layout{
+    .ant-layout-sider{
+      .ant-layout-sider-children{
+        .logo{
+          font-size: 20px;
+          height: 32px;
+          margin: 16px;
+          
+        }
+        .ant-menu{
+          .ant-menu-item{
+            .ant-menu-item-icon{
+  
+            }
+            .ant-menu-title-content{
+  
+            }
+          }
+        }
+      }
+    }
+    .site-layout{
+      .ant-layout-header{
+        background: #fff;
+        .trigger{
+          padding: 0 24px;
+          font-size: 18px;
+          line-height: 64px;
+          cursor: pointer;
+          transition: color 0.3s;
+          &:hover{
+            color: #1890ff;
+          }
+        }
+      }
+      .ant-layout-content{
+        .add-and-search{
+            margin-bottom: 25px;
+            .title{
+                font-size: 20; 
+                font-weight: 500;
+                h3{
+                    font-size: 25px;
+                }
+                button{
+                  padding: 0 5px;
+                }
+            }
+            .ant-input-search{
+                .ant-input-wrapper{
+
+                }
+            }
+        }
+        .ant-table-wrapper{
+
+        }
+      }
+    }
+  }

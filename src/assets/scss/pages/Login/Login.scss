@@ -1,0 +1,83 @@
+.login {
+    position: relative;
+  
+    .row {
+      --bs-gutter-x: 0;
+      height: 100vh;
+      background-image: url(../../../../../public/Image/bg.jpg);
+      background-repeat: no-repeat;
+      background-position: inherit;
+      background-size: 100%;
+  
+      .logo {
+        img {
+          position: absolute;
+          top: 48px;
+          width: 153px;
+          z-index: 0;
+          left: 48px;
+        }
+      }
+      .login-item {
+        margin: 148px auto;
+  
+        width: 415px;
+        height: 434px;
+  
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 2px;
+        .login-content {
+          .title {
+            font-family: "Inter"; 
+            font-weight: 600;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 0;
+          }
+          .nav-title {
+            text-align: center;
+            margin-top: 5px;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 25px;
+  
+            color: rgba(0, 0, 0, 0.47);
+          }
+        }
+        .login-form {
+          width: 358px;
+          height: 294px;
+          margin: 30px auto;
+          .ant-form {
+            .ant-form-item {
+              .ant-row {
+                .ant-col {
+                  .ant-form-item-control-input {
+                    .ant-form-item-control-input-content {
+                      label {
+                      }
+                      .login-form-forgot {
+                        margin-left: 129px;
+                      }
+                      button {
+                        margin-right: 5px;
+                        border-radius: 5px;
+                        padding: 0 158px;
+                        height: 40px;
+                      }
+                      .ant-input-affix-wrapper {
+                        padding: 10px 11px;
+                        border-radius: 10px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
