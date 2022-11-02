@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ACCESS_TOKEN, getStore, http, setCookie, setStore, setStoreJson, USER_LOGIN } from "../../util/setting";
+import { ACCESS_TOKEN, getStore, getStoreJson, http, setCookie, setStore, setStoreJson, USER_LOGIN } from "../../util/setting";
 import { AppDispatch } from "../configStore";
 import { history } from "../../index";
+import { Modal } from "antd";
 
 export interface UserRegisterModel {
   id: number;
@@ -20,6 +21,7 @@ export interface UserLoginModel {
 }
 
 export interface GetAllUserModel {
+  [x: string]: any;
   id: number;
   name: string;
   email: string;
@@ -29,6 +31,8 @@ export interface GetAllUserModel {
 }
 
 export interface AddUserModel extends UserRegisterModel {}
+
+export interface UpdateUserModel extends UserRegisterModel {}
 
 const initialState: any = {
   userRegister: {
@@ -98,12 +102,15 @@ export const loginApi = (userLogin: UserLoginModel) => {
     try {
       const result = await http.post("/auth/signin", userLogin);
       //Sau khi đăng nhập thành công => lưu dữ liệu vào localstorage hoặc cookie
-      setCookie(ACCESS_TOKEN, result.data.content.accessToken, 30);
 
-      setStore(ACCESS_TOKEN, result.data.content.accessToken);
       alert("Đăng nhập thành công");
-      history.push("/home");
       setStoreJson(USER_LOGIN, result.data.content);
+      const userRole = result.data.content.user.role
+      if (userRole === "ADMIN"){
+        history.push("/admin")
+      } else {
+        history.push("/home")
+      }
       //Sau khi đăng nhập thành công thì dispatch action getProfile
     } catch (err: any) {
       console.log(typeof err.response?.data.content);
@@ -160,10 +167,10 @@ export const searchUserApi = (e: string) => {
   };
 };
 
-export const GetUserByIdApi = (userId:  { id: number }) => {
+export const GetUserByIdApi = (id: number) => {
   return async (dispatch: AppDispatch) => {
     try {
-      const result = await http.get(`/users/${userId?.id}`);
+      const result = await http.get(`/users/${id}`);
       const action = getUserByIdAction(result.data.content);
       dispatch(action);
     } catch (err: any) {
@@ -171,3 +178,34 @@ export const GetUserByIdApi = (userId:  { id: number }) => {
     }
   };
 };
+
+export const UpdateUserByIdApi = (userUpdate : UpdateUserModel) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const result = await http.put(`/users/${userUpdate.id}`,userUpdate);
+      const countDown = () => {
+        let secondsToGo = 5;
+        const modal = Modal.success({
+          title: 'Update Success',
+          content: `This modal will be destroyed after ${secondsToGo} second.`,
+        });
+        const timer = setInterval(() => {
+          secondsToGo -= 1;
+          modal.update({
+            content: `This modal will be destroyed after ${secondsToGo} second.`,
+          });
+        }, 1000);
+        setTimeout(() => {
+          clearInterval(timer);
+          modal.destroy();
+        }, secondsToGo * 1000);
+        history.push("/admin/userManagement")
+      };
+      dispatch(getUserApi)
+      countDown()
+      
+    } catch (err: any) {
+      
+    }
+  }
+}

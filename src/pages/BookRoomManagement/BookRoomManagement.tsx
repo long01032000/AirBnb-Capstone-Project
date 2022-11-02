@@ -10,14 +10,21 @@ import {
   Modal,
   MenuProps,
 } from "antd";
+import { NavLink } from "react-router-dom";
+import { Avatar, Image } from "antd";
+import AddAdminRender from "../../components/AddAdminRender/AddAdminRender";
+import { searchUserApi } from "../../redux/reducers/userReducer";
 import { AppDispatch } from "../../redux/configStore";
 import { useDispatch } from "react-redux";
 import LocationInformationTableRender from "../../components/LocationInformationTableRender/LocationInformationTableRender";
 import AddLocationRender from "../../components/AddLocationRender/AddLocationRender";
+import BookRoomManagementRender from "../../components/BookRoomManagementRender/BookRoomManagementRender";
+import AddBookRoomRender from "../../components/AddBookRoomRender/AddBookRoomRender";
+import { searchBookRoomApi } from "../../redux/reducers/bookRoomReducer";
 
 type Props = {};
 
-export default function LocationInformation({}: Props) {
+export default function BookRoomManagement({}: Props) {
   const { Search } = Input;
   const { Content } = Layout;
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -25,7 +32,9 @@ export default function LocationInformation({}: Props) {
   const dispatch: AppDispatch = useDispatch();
 
   const onSearch = (value: string) => {
-    
+     const values:  number = +value
+     console.log(values)
+    dispatch(searchBookRoomApi(values))
   };
 
   const showModal = () => {
@@ -41,7 +50,7 @@ export default function LocationInformation({}: Props) {
   };
 
   return (
-    <section className="LocationInformation">
+    <section className="BookRoomManagement">
       <Content
         className="site-layout-background"
         style={{
@@ -51,30 +60,30 @@ export default function LocationInformation({}: Props) {
       >
         <div className="add-and-search">
           <div className="title d-flex">
-            <h3>Add New Location</h3>
+            <h3>Add New Book Room</h3>
             <Button type="primary" className="ms-2" onClick={showModal}>
               <PlusOutlined style={{ fontSize: 20 }} />
             </Button>
             <Modal
-              title="Add New Location"
+              title="Add new book room"
               open={isModalOpen}
               onOk={handleOk}
               onCancel={handleCancel}
               width={600}
-              style={{top: 150, textAlign: "center" }}
+              style={{ textAlign: "center" }}
             >
-              <AddLocationRender/>
+              <AddBookRoomRender/>
             </Modal>
           </div>
           <Search
-            placeholder="Enter the location"
+            placeholder="Enter id"
             allowClear
             enterButton="Search"
             size="large"
             onSearch={onSearch}
           />
         </div>
-        <LocationInformationTableRender/>
+        <BookRoomManagementRender/>
       </Content>
     </section>
   );

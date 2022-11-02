@@ -59,10 +59,10 @@ export const http = axios.create({
 //Cấu hình request header
 http.interceptors.request.use(
     config => {
-        const token = getStore(ACCESS_TOKEN);
+        const {token} = getStoreJson(USER_LOGIN);
         config.headers = {
             ...config.headers,
-            ['Authorization']: `Bearer ${token}`,
+            ['token']: token,
             ['TokenCybersoft']: TOKEN_CYBERSOFT
         }
         // config.headers['Content-Type'] = 'application/json';

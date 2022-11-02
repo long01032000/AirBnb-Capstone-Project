@@ -10,7 +10,8 @@ import {
 } from "../../redux/reducers/userReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { config } from "process";
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate, useParams } from "react-router-dom";
+import { FormOutlined ,DeleteOutlined,ManOutlined,WomanOutlined} from "@ant-design/icons";
 
 type Props = {};
 
@@ -19,31 +20,46 @@ const columns: ColumnsType<GetAllUserModel> = [
     title: "Id",
     dataIndex: "id",
     key: "id",
+    width: 100
   },
   {
     title: "Name",
     dataIndex: "name",
     key: "name",
+    width: 230
   },
   {
     title: "Email",
     dataIndex: "email",
     key: "email",
+    width: 230
   },
   {
-    title: "Phone",
-    key: "phone",
-    dataIndex: "phone",
+    title: "Birthday",
+    key: "birthday",
+    dataIndex: "birthday",
+    width: 230
   },
   {
     title: "Gender",
     key: "gender",
     dataIndex: "gender",
+    render: (gender) => {
+     
+      let maleOrFemale = gender==="true" ? <ManOutlined style={{ color: '#0d6efd' ,fontSize: '20px', marginLeft: '12px'}}/> : <WomanOutlined style={{ color: 'hotpink' ,fontSize: '20px', marginLeft: '12px'}}/>;
+      return <>{maleOrFemale}</>;
+    },
+    width: 150
   },
   {
     title: "Role",
     key: "role",
     dataIndex: "role",
+    render: (role) => {
+      let color = role.length > 4 ? "red" : "green";
+      return <Tag color={color}>{role}</Tag>;
+    },
+    width: 150
   },
   {
     title: "Action",
@@ -53,8 +69,11 @@ const columns: ColumnsType<GetAllUserModel> = [
 ];
 
 export default function UserManagementTableRender({}: Props) {
-  const { arrUser,userEdit } = useSelector((state: RootState) => state.userReducer);
+  const { arrUser, userEdit } = useSelector(
+    (state: RootState) => state.userReducer
+  );
   const navigate = useNavigate();
+  const params = useParams();
 
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
@@ -69,33 +88,30 @@ export default function UserManagementTableRender({}: Props) {
         id: `${item.id}`,
         name: `${item.name}`,
         email: `${item.email}`,
-        phone: `${item.phone}`,
+        birthday: `${item.birthday}`,
         gender: `${item.gender}`,
         role: `${item.role}`,
         action: (
           <>
-            <button className="btn me-2 btn-warning text-white">
-              View details
-            </button>
             <>
               <button
-                className="btn me-2 btn-primary text-white"
+                className="btn me-2"
                 onClick={() => {
-                  dispatch(GetUserByIdApi(item));
-                  console.log(item)
-                  navigate("/admin/edit",userEdit);
+                  dispatch(GetUserByIdApi(item.id));
+
+                  navigate(`/admin/editUser/${item.id}`, userEdit);
                 }}
               >
-                Edit
+                <FormOutlined />
               </button>
             </>
             <button
-              className="btn btn-danger text-white"
+              className="btn"
               onClick={() => {
                 dispatch(deleteUserApi(item));
               }}
             >
-              Delete
+              <DeleteOutlined />
             </button>
           </>
         ),
@@ -108,7 +124,8 @@ export default function UserManagementTableRender({}: Props) {
       <Table
         columns={columns}
         dataSource={userRender()}
-        pagination={{ pageSize: 5, pageSizeOptions: ["10", "20", "30"] }}
+        pagination={{ pageSize: 10, pageSizeOptions: ["10", "20", "30"] }}
+        scroll={{ y: 350 }} 
       />
     </>
   );

@@ -7,10 +7,13 @@ import { config } from "process";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { getLocationApi } from "../../redux/reducers/locationReducer";
 import {
+  deleteRoomInformationApi,
   GetAllRoomInformationModel,
   getRoomInformationApi,
+  getRoomInformationByIdApi,
 } from "../../redux/reducers/roomReducer";
-import { EditOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined,FormOutlined } from "@ant-design/icons";
+import UploadRoomImage from "../UploadRoomImage/UploadRoomImage";
 
 type Props = {};
 
@@ -19,36 +22,43 @@ const columns: ColumnsType<GetAllRoomInformationModel> = [
     title: "Id",
     dataIndex: "id",
     key: "id",
+    width: 100
   },
   {
     title: "Room Name",
     dataIndex: "tenPhong",
     key: "tenPhong",
+    width: 230
   },
   {
     title: "Image",
     key: "hinhAnh",
     dataIndex: "hinhAnh",
+    width: 250
   },
   {
     title: "Guest",
     key: "khach",
     dataIndex: "khach",
+    width: 130
   },
   {
     title: "Bedroom",
     key: "phongNgu",
     dataIndex: "phongNgu",
+    width: 130
   },
   {
     title: "Bed",
     dataIndex: "giuong",
     key: "giuong",
+    width: 130
   },
   {
     title: "Price",
     key: "giaTien",
     dataIndex: "giaTien",
+    width: 130
   },
 
   {
@@ -59,7 +69,7 @@ const columns: ColumnsType<GetAllRoomInformationModel> = [
 ];
 
 export default function RoomInformationTableRender({}: Props) {
-  const { arrRoomInformation } = useSelector(
+  const { arrRoomInformation, roomInformationEdit } = useSelector(
     (state: RootState) => state.roomReducer
   );
   const navigate = useNavigate();
@@ -76,13 +86,11 @@ export default function RoomInformationTableRender({}: Props) {
         return {
           key: id,
           id: `${item.id}`,
-          tenPhong: (<div style={{width: 200}}>
-          {item.tenPhong}
-          </div>),
+          tenPhong: <div style={{ width: 200 }}>{item.tenPhong}</div>,
           hinhAnh: (
             <>
-              <img width={150} height={58} src={item.hinhAnh} alt="" />
-             <button className="btn ms-2"><EditOutlined size={50}/></button>
+              <img width={140} height={80} src={item.hinhAnh} alt="" />
+             <UploadRoomImage id={item.id} hinhAnh={item.hinhAnh}/>
             </>
           ),
           khach: `${item.khach}`,
@@ -92,15 +100,18 @@ export default function RoomInformationTableRender({}: Props) {
           action: (
             <>
               <>
-                <button
-                  className="btn me-2 btn-primary text-white"
-                  onClick={() => {}}
-                >
-                  Edit
+                <button className="btn me-2" onClick={() => {
+                   dispatch(getRoomInformationByIdApi(item.id));
+
+                   navigate(`/admin/editRoomInformation/${item.id}`, roomInformationEdit);
+                }}>
+                  <FormOutlined/>
                 </button>
               </>
-              <button className="btn btn-danger text-white" onClick={() => {}}>
-                Delete
+              <button className="btn" onClick={() => {
+                 dispatch(deleteRoomInformationApi(item));
+              }}>
+                <DeleteOutlined />
               </button>
             </>
           ),
@@ -114,7 +125,8 @@ export default function RoomInformationTableRender({}: Props) {
       <Table
         columns={columns}
         dataSource={roomInformationRender()}
-        pagination={{ pageSize: 4, pageSizeOptions: ["10", "20", "30"] }}
+        pagination={{ pageSize: 10, pageSizeOptions: ["10", "20", "30"] }}
+        scroll={{ y: 350 }} 
       />
     </>
   );

@@ -63,7 +63,7 @@ export default function UserManagement({}: Props) {
               onOk={handleOk}
               onCancel={handleCancel}
               width={900}
-              style={{ textAlign: "center" }}
+              style={{ top: 100 ,textAlign: "center" }}
             >
               <AddAdminRender />
             </Modal>

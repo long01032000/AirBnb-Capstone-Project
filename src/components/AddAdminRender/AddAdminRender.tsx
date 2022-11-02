@@ -38,7 +38,7 @@ export default function AddAdminRender({}: Props) {
   const onFinish = (fieldsValue: any) => {
     const values = {
       ...fieldsValue,
-      birthday: fieldsValue["birthday"].format("YYYY-MM-DD"),
+      birthday: fieldsValue["birthday"].format("DD/MM/YYYY"),
     };
     dispatch(postUserApi(values));
     console.log("Received values of form: ", values);
@@ -63,149 +63,146 @@ export default function AddAdminRender({}: Props) {
   };
 
   return (
-      <section className="add-admin">
-        <div className="add-admin-content">
-          <div className="add-admin-item">
-            <div className="add-admin-form">
-              <Form
-                {...formItemLayout}
-                form={form}
-                name="add_admin"
-                onFinish={onFinish}
-                initialValues={{
-                  prefix: "84",
-                }}
-                scrollToFirstError
-                className="row"
-              >
-                <div className="col-6">
-                  <Form.Item
-                    name="email"
-                    label="E-mail"
-                    rules={[
-                      {
-                        type: "email",
-                        message: "The input is not valid E-mail!",
-                      },
-                      {
-                        required: true,
-                        message: "Please input your E-mail!",
-                      },
-                    ]}
-                  >
-                    <Input />
-                  </Form.Item>
+    <section className="add-admin">
+      <div className="add-admin-content">
+        <div className="add-admin-item">
+          <div className="add-admin-form">
+            <Form
+              {...formItemLayout}
+              form={form}
+              name="add_admin"
+              onFinish={onFinish}
+              initialValues={{
+                prefix: "84",
+              }}
+              scrollToFirstError
+              className="row"
+            >
+              <div className="col-6">
+                <Form.Item
+                  name="email"
+                  label="E-mail"
+                  rules={[
+                    {
+                      type: "email",
+                      message: "The input is not valid E-mail!",
+                    },
+                    {
+                      required: true,
+                      message: "Please input your E-mail!",
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
 
-                  <Form.Item
-                    name="password"
-                    label="Password"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input your password!",
+                <Form.Item
+                  name="password"
+                  label="Password"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your password!",
+                    },
+                  ]}
+                  hasFeedback
+                >
+                  <Input.Password />
+                </Form.Item>
+
+                <Form.Item
+                  name="confirm"
+                  label="Confirm Password"
+                  dependencies={["password"]}
+                  hasFeedback
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please confirm your password!",
+                    },
+                    ({ getFieldValue }) => ({
+                      validator(_, value) {
+                        if (!value || getFieldValue("password") === value) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(
+                          new Error(
+                            "The two passwords that you entered do not match!"
+                          )
+                        );
                       },
-                    ]}
-                    hasFeedback
-                  >
-                    <Input.Password />
-                  </Form.Item>
+                    }),
+                  ]}
+                >
+                  <Input.Password />
+                </Form.Item>
+                <Form.Item name="birthday" label="Birthday" {...config}>
+                  <DatePicker />
+                </Form.Item>
+                <Form.Item {...tailFormItemLayout}>
+                  <Button type="primary" htmlType="submit">
+                    Add
+                  </Button>
+                </Form.Item>
+              </div>
 
-                  <Form.Item
-                    name="confirm"
-                    label="Confirm Password"
-                    dependencies={["password"]}
-                    hasFeedback
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please confirm your password!",
-                      },
-                      ({ getFieldValue }) => ({
-                        validator(_, value) {
-                          if (!value || getFieldValue("password") === value) {
-                            return Promise.resolve();
-                          }
-                          return Promise.reject(
-                            new Error(
-                              "The two passwords that you entered do not match!"
-                            )
-                          );
-                        },
-                      }),
-                    ]}
-                  >
-                    <Input.Password />
-                  </Form.Item>
-                  <Form.Item name="birthday" label="Birthday" {...config}>
-                    <DatePicker />
-                  </Form.Item>
-                  <Form.Item {...tailFormItemLayout}>
-                    <Button type="primary" htmlType="submit">
-                      Add
-                    </Button>
-                  </Form.Item>
-                </div>
+              <div className="col-6">
+                <Form.Item
+                  name="name"
+                  label="Name"
+                  tooltip="What do you want others to call you?"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your nickname!",
+                      whitespace: true,
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
 
-                <div className="col-6">
-                  <Form.Item
-                    name="name"
-                    label="Name"
-                    tooltip="What do you want others to call you?"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input your nickname!",
-                        whitespace: true,
-                      },
-                    ]}
-                  >
-                    <Input />
-                  </Form.Item>
+                <Form.Item
+                  name="phone"
+                  label="Phone Number"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your phone number!",
+                    },
+                  ]}
+                >
+                  <Input
+                    addonBefore={prefixSelector}
+                    style={{ width: "100%" }}
+                  />
+                </Form.Item>
 
-                  <Form.Item
-                    name="phone"
-                    label="Phone Number"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input your phone number!",
-                      },
-                    ]}
-                  >
-                    <Input
-                      addonBefore={prefixSelector}
-                      style={{ width: "100%" }}
-                    />
-                  </Form.Item>
+                <Form.Item
+                  name="gender"
+                  label="Gender"
+                  rules={[{ required: true, message: "Please select gender!" }]}
+                >
+                  <Select placeholder="select your gender">
+                    <Option value={true}>Male</Option>
+                    <Option value={false}>Female</Option>
+                  </Select>
+                </Form.Item>
 
-                  <Form.Item
-                    name="gender"
-                    label="Gender"
-                    rules={[
-                      { required: true, message: "Please select gender!" },
-                    ]}
-                  >
-                    <Select placeholder="select your gender">
-                      <Option value={true}>Male</Option>
-                      <Option value={false}>Female</Option>
-                    </Select>
-                  </Form.Item>
-
-                  <Form.Item
-                    name="role"
-                    label="Role"
-                    rules={[{ required: true, message: "Please select role!" }]}
-                  >
-                    <Select placeholder="select your role">
-                      <Option value="user">User</Option>
-                      <Option value="admin">Admin</Option>
-                    </Select>
-                  </Form.Item>
-                </div>
-              </Form>
-            </div>
+                <Form.Item
+                  name="role"
+                  label="Role"
+                  rules={[{ required: true, message: "Please select role!" }]}
+                >
+                  <Select placeholder="select your role">
+                    <Option value="user">User</Option>
+                  </Select>
+                </Form.Item>
+              </div>
+            </Form>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
   );
 }

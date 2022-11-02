@@ -18,6 +18,7 @@ import { AppDispatch } from "../../redux/configStore";
 import { useDispatch } from "react-redux";
 import LocationInformationTableRender from "../../components/LocationInformationTableRender/LocationInformationTableRender";
 import RoomInformationTableRender from "../../components/RoomInformationTableRender/RoomInformationTableRender";
+import AddRoomInformationRender from "../../components/AddRoomInformationRender/AddRoomInformationRender";
 
 type Props = {};
 
@@ -65,9 +66,9 @@ export default function RoomInformation({}: Props) {
               onOk={handleOk}
               onCancel={handleCancel}
               width={900}
-              style={{ textAlign: "center" }}
+              style={{top: 20, textAlign: "center" }}
             >
-              {/* <AddAdminRender /> */}
+              <AddRoomInformationRender/>
             </Modal>
           </div>
           <Search

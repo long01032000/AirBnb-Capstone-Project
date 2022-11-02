@@ -18,6 +18,11 @@ import DashboardTemplate from "./templates/DashboardTemplate/DashboardTemplate";
 import EditUser from "./components/EditUser/EditUser";
 import LocationInformation from "./pages/LocationInformation/LocationInformation";
 import RoomInformation from "./pages/RoomInformation/RoomInformation";
+import BookRoomManagement from "./pages/BookRoomManagement/BookRoomManagement";
+import EditLocation from "./components/EditLocation/EditLocation";
+import UploadImageLocation from "./components/UploadImageLocation/UploadImageLocation";
+import EditRoomInformation from "./components/EditRoomInformation/EditRoomInformation";
+import EditBookRoom from "./components/EditBookRoom/EditBookRoom";
 
 
 export const history = createBrowserHistory({ window });
@@ -43,7 +48,13 @@ root.render(
         </Route>
         <Route path="roomInformation" element={<RoomInformation />}>
         </Route>
-        <Route path="edit" element={<EditUser/>}></Route>
+        <Route path="bookRoomManagement" element={<BookRoomManagement />}>
+        </Route>
+        <Route path="editUser/:id" element={<EditUser/>}></Route>
+        <Route path="editLocation/:id" element={<EditLocation/>}></Route>
+        <Route path="editBookRoom/:id" element={<EditBookRoom/>}></Route>
+        <Route path="editRoomInformation/:id" element={<EditRoomInformation/>}></Route>
+        
       </Route>
     </Routes>
   </HistoryRouter>

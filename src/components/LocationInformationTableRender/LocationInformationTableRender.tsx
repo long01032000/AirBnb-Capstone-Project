@@ -11,48 +11,63 @@ import { useDispatch, useSelector } from "react-redux";
 import { config } from "process";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import {
+  deleteLocationApi,
   GetAllLocationModel,
   getLocationApi,
+  getLocationByIdApi,
 } from "../../redux/reducers/locationReducer";
-import { EditOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, FormOutlined } from "@ant-design/icons";
+import UploadImageLocation from "../UploadImageLocation/UploadImageLocation";
 
-type Props = {};
+type Props = {
+  
+  
+};
+
+
 
 const columns: ColumnsType<GetAllLocationModel> = [
   {
     title: "Id",
     dataIndex: "id",
     key: "id",
+    width: 100
   },
   {
     title: "Location",
     dataIndex: "tenViTri",
     key: "tenViTri",
+    width: 230
   },
   {
     title: "Image",
     key: "hinhAnh",
     dataIndex: "hinhAnh",
+    width: 230
   },
   {
     title: "Province",
     dataIndex: "tinhThanh",
     key: "tinhThanh",
+    width: 230
   },
   {
     title: "Nation",
     key: "quocGia",
     dataIndex: "quocGia",
+    width: 230
   },
   {
     title: "Action",
     key: "action",
     dataIndex: "action",
+    
   },
 ];
 
 export default function LocationInformationTableRender({}: Props) {
-  const { arrLocation } = useSelector(
+  
+  const { arrLocation, locationEdit } = useSelector(
     (state: RootState) => state.locationReducer
   );
   const navigate = useNavigate();
@@ -69,30 +84,35 @@ export default function LocationInformationTableRender({}: Props) {
         key: id,
         id: `${item.id}`,
         tenViTri: `${item.tenViTri}`,
-        hinhAnh: (
+        hinhAnh: ( 
           <>
             <img width={65} height={58} src={item.hinhAnh} alt="" />
-            <button className="btn ms-2"><EditOutlined size={50}/></button>
+           <UploadImageLocation id={item.id} hinhAnh={item.hinhAnh} />
           </>
         ),
         tinhThanh: `${item.tinhThanh}`,
         quocGia: `${item.quocGia}`,
-
         action: (
           <>
-            <button className="btn me-2 btn-warning text-white">
-              View details
-            </button>
             <>
               <button
-                className="btn me-2 btn-primary text-white"
-                onClick={() => {}}
+                className="btn me-2"
+                onClick={() => {
+                  dispatch(getLocationByIdApi(item.id));
+
+                  navigate(`/admin/editLocation/${item.id}`, locationEdit);
+                }}
               >
-                Edit
+                <FormOutlined />
               </button>
             </>
-            <button className="btn btn-danger text-white" onClick={() => {}}>
-              Delete
+            <button
+              className="btn"
+              onClick={() => {
+                dispatch(deleteLocationApi(item));
+              }}
+            >
+              <DeleteOutlined />
             </button>
           </>
         ),
@@ -105,7 +125,8 @@ export default function LocationInformationTableRender({}: Props) {
       <Table
         columns={columns}
         dataSource={locationRender()}
-        pagination={{ pageSize: 4, pageSizeOptions: ["10", "20", "30"] }}
+        pagination={{ pageSize: 10, pageSizeOptions: ["10", "20", "30"] }}
+        scroll={{ y: 350 }} 
       />
     </>
   );

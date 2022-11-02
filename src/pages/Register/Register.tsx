@@ -34,7 +34,7 @@ export default function Register({}: Props) {
   const dispatch: AppDispatch = useDispatch();
   const { Option } = Select;
   const [form] = Form.useForm();
-  
+
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select style={{ width: 70 }}>
@@ -56,9 +56,9 @@ export default function Register({}: Props) {
   const onFinish = (fieldsValue: any) => {
     const values = {
       ...fieldsValue,
-      "birthday": fieldsValue["birthday"].format("YYYY-MM-DD"),
+      birthday: fieldsValue["birthday"].format("DD/MM/YYYY"),
     };
-    dispatch(registerApi(values))
+    dispatch(registerApi(values));
     console.log("Received values of form: ", values);
   };
 
@@ -208,8 +208,7 @@ export default function Register({}: Props) {
                     rules={[{ required: true, message: "Please select role!" }]}
                   >
                     <Select placeholder="select your role">
-                      <Option value="user">User</Option>
-                      <Option value="admin">Admin</Option>
+                      <Option value="USER">User</Option>
                     </Select>
                   </Form.Item>
                 </div>

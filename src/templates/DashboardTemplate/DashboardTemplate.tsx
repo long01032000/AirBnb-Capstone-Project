@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useEffect, useState } from "react";
+import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   CalendarOutlined,
   UserOutlined,
   EnvironmentOutlined,
+  CarryOutOutlined,
 } from "@ant-design/icons";
 import { CaretDownOutlined, PlusOutlined } from "@ant-design/icons";
 import {
@@ -19,11 +21,16 @@ import {
   MenuProps,
 } from "antd";
 import { Avatar, Image } from "antd";
-
+import { getStoreJson, USER_LOGIN } from "../../util/setting";
 
 type Props = {};
 
 export default function DashboardTemplate({}: Props) {
+  const userLogin = getStoreJson(USER_LOGIN);
+  const admin = userLogin?.user.role;
+
+  const token = userLogin?.token;
+
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const { Header, Sider } = Layout;
@@ -33,12 +40,28 @@ export default function DashboardTemplate({}: Props) {
     <Menu
       items={[
         {
-          label: <NavLink to="">Log out</NavLink>,
+          label: (
+            <div
+              onClick={() => {
+                alert("Logout Sucess");
+                navigate("/home");
+                localStorage.clear();
+                window.location.reload();
+              }}
+            >
+              Log out
+            </div>
+          ),
           key: "0",
         },
       ]}
     />
   );
+
+  if (admin !== "ADMIN") {
+    alert("This page only grants access from admin");
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <>
@@ -71,6 +94,11 @@ export default function DashboardTemplate({}: Props) {
                   icon: <CalendarOutlined />,
                   label: "Room Information Management",
                 },
+                {
+                  key: "bookRoomManagement",
+                  icon: <CarryOutOutlined />,
+                  label: "Book Room Management",
+                },
               ]}
               onSelect={(e: any) => {
                 setKey(e.key);
@@ -95,12 +123,12 @@ export default function DashboardTemplate({}: Props) {
                 }
               )}
               <Dropdown overlay={menu} trigger={["click"]}>
-                <a onClick={(e) => e.preventDefault()}>
+                <a onClick={() => {}}>
                   <Space
                     className="text-dark"
                     style={{ fontSize: 15, fontWeight: 600 }}
                   >
-                    Admin
+                    {userLogin?.user.name}
                     <Avatar
                       src={
                         <Image
