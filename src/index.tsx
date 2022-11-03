@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import {  Routes, Route} from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
-import HomeTemplate from "./templates/HomeTemplate/HomeTemplate";
+
+import HomeTemplate from "./templates/HomeTemplate";
 
 import 'antd/dist/antd.css';
 import './assets/scss/style.scss';
@@ -23,9 +24,21 @@ import EditLocation from "./components/EditLocation/EditLocation";
 import UploadImageLocation from "./components/UploadImageLocation/UploadImageLocation";
 import EditRoomInformation from "./components/EditRoomInformation/EditRoomInformation";
 import EditBookRoom from "./components/EditBookRoom/EditBookRoom";
+import Index from "./pages/Index/Index";
+import DanhSachPhong from "./pages/DanhSachPhong/DanhSachPhong";
+import ChiTietPhong from "./pages/ChiTietPhong/ChiTietPhong";
 
 
 export const history = createBrowserHistory({ window });
+
+
+
+
+
+
+
+
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -34,8 +47,12 @@ root.render(
   <Provider store={store}>
     <HistoryRouter history={history}>
     <Routes>
-      <Route path="" element={<HomeTemplate/>}>
-        <Route index element={<Home/>}></Route>
+      <Route path="/" element={<HomeTemplate/>}>
+      <Route index element={<Index />}></Route>
+        <Route path="/DanhSachPhong" element={<DanhSachPhong />}></Route>
+        <Route path="/ChiTietPhong">
+        <Route path=":id"  element={<ChiTietPhong />}></Route>
+        </Route>
         <Route path="home" element={<Home/>}></Route>
       </Route>
       <Route path="register" element={<Register/>}></Route>
@@ -60,3 +77,4 @@ root.render(
   </HistoryRouter>
   </Provider>
 );
+

@@ -1,0 +1,212 @@
+section#ChiTietPhong {
+  margin-top: 100px;
+  h2 {
+  }
+  div {
+    p {
+    }
+  }
+  .img {
+   
+   
+    }
+   
+  }
+  .row {
+    margin-top: 20px;
+    .col-6 {
+      .detail {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid rgb(197, 197, 197);
+        .thongTinPhong {
+          h5 {
+          }
+          p {
+            font-size: 12px;
+            font-weight: 400;
+          }
+        }
+        .avatar {
+          width: 10%;
+          img {
+            width: 100%;
+            border-radius: 50%;
+            cursor: pointer;
+          }
+        }
+      }
+      .utilities {
+        border-bottom: 2px solid rgb(197, 197, 197);
+        .utilitie1 {
+          display: flex;
+          align-items: center;
+          margin-top: 25px;
+
+          .icon-util {
+            margin-right: 15px;
+          }
+          .content {
+            p {
+              font-size: 15px;
+              font-weight: 500;
+              margin-bottom: 0;
+            }
+            span {
+              color: rgb(161, 161, 161);
+            }
+          }
+        }
+        .utilitie2 {
+          display: flex;
+          align-items: center;
+          margin-top: 10px;
+          .icon-util {
+            margin-right: 15px;
+          }
+          .content {
+            p {
+              font-size: 15px;
+              font-weight: 500;
+              margin-bottom: 0;
+            }
+            span {
+              color: rgb(161, 161, 161);
+            }
+          }
+        }
+        .utilitie3 {
+          display: flex;
+          align-items: center;
+          margin-top: 10px;
+          .icon-util {
+            margin-right: 15px;
+          }
+          .content {
+            p {
+              font-size: 15px;
+              font-weight: 500;
+              margin-bottom: 0;
+            }
+            span {
+              color: rgb(161, 161, 161);
+            }
+          }
+        }
+        .utilitie4 {
+          display: flex;
+          align-items: center;
+          margin-top: 10px;
+          margin-bottom: 20px;
+          .icon-util {
+            margin-right: 15px;
+          }
+          .content {
+            p {
+              font-size: 15px;
+              font-weight: 500;
+              margin-bottom: 0;
+            }
+            span {
+              color: rgb(161, 161, 161);
+            }
+          }
+        }
+      }
+      .note {
+        border-bottom: 2px solid rgb(197, 197, 197);
+        .translation {
+          border: 1px solid black;
+          border-radius: 5px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px;
+          margin: 30px 0;
+          p {
+            margin-bottom: 0;
+          }
+          i {
+            cursor: pointer;
+          }
+        }
+      }
+      .convenient {
+        border-bottom: 2px solid rgb(197, 197, 197);
+        h5 {
+          margin-bottom: 0;
+          margin: 20px 0;
+        }
+        .row {
+          margin-top: 0;
+          .col-6 {
+            .convenient-item {
+              display: flex;
+              align-items: center;
+              i {
+                margin-right: 10px;
+              }
+            }
+          }
+        }
+      }
+      .comment {
+        margin-top: 30px;
+        .row {
+          .col-6 {
+                        
+            .comment-item {
+
+              .avatar {
+                display: flex;
+                .avt {
+                    img{
+                   border-radius: 50%;
+                    }
+                 
+                }
+                .prf {
+                    margin-left: 10px;
+                  .name {
+                    font-size: 15px;
+                    margin-bottom: 0;
+                    font-weight: 500;
+                  }
+                }
+              }
+              .content-comment{
+
+              }
+            }
+          }
+        }
+      }
+      .add-comment{
+        margin: 30px 0;
+        display: flex;
+        .avatar{
+            margin-right: 5px;
+            img{
+                border-radius: 50%;
+                
+            }
+        }
+        textarea{
+
+        }
+      }
+    }
+    .col-6{
+      .book-room{
+        display: inline-block;
+        border: 1px solid #DFDFDF;
+        padding: 10px 30px;
+        border-radius: 10px;
+        transition: 0.4s ease-in-out;
+        &:hover{
+          box-shadow: 0px 7px 10px 4px rgba(0,0,0,0.29);
+        }
+      }
+    }
+  }

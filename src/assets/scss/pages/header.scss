@@ -1,0 +1,133 @@
+section#header {
+    padding: 20px 0;
+  .left {
+    .logo {
+      img {
+        width: 140px;
+        @media screen and (max-width: 767px) {
+            width: 100px;
+        }
+      }
+    }
+  }
+  .middle {
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
+    .search {
+      display: flex;
+      border: 1px solid grey;
+      justify-content: space-between;
+        width: 450px;
+        padding: 5px 8px;
+      align-items: center;
+      border-radius: 50px;
+      .search1 {
+    padding-left: 10px;
+        p {
+          margin-bottom: 0;
+        }
+        
+      }
+      .search2 {
+        border-left: 1px solid gray;
+        padding-left: 10px;
+
+        p {
+          margin-bottom: 0;
+        }
+      }
+      .search3 {
+        border-left: 1px solid gray;
+        padding-left: 10px;
+
+        p {
+          margin-bottom: 0;
+        }
+      }
+      .search4 {
+        padding-left: 10px;
+        border-left: 1px solid gray;
+        margin-left: 30px;
+        p {
+          margin-bottom: 0;
+        }
+      }
+      .button {
+        margin-left: 30px;
+        button {
+          border-radius: 50%;
+          width: 45px;
+          height: 45px;
+        }
+      }
+    }
+  }
+  .right {
+    text-align: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media screen and (max-width: 767px) {
+        width: 300px;
+    }
+    p{
+        margin-left: 100px;
+        margin-bottom: 0;
+        @media screen and (max-width: 767px) {
+            margin-left: 0;
+            width: 100px;
+        }
+    }
+    .sign-up-in{
+        padding: 0 5px;
+        width: 150px;
+        display: none;
+        font-weight: 500;
+        @media screen and (max-width: 768px) {
+            display: block;
+        }
+    }
+    .language{
+        margin-left: 30px;
+        cursor: pointer;
+        @media screen and (max-width: 767px) {
+            display: none;
+        }
+    }
+    button{
+        background-color: white;
+        color: black;
+        border-radius: 1px solid gray;
+        border-radius: 50px;
+        width: 78px;
+        margin-left: 30px;
+        @media screen and (max-width: 767px) {
+            display: none;
+        }
+        .bars{
+            margin-right: 10px;
+            .fa-bars{
+                color: rgb(107, 107, 107);
+            }
+        }
+        .user{
+         
+         background-color: rgb(216, 216, 216);
+        padding: 3px 6px;
+        border-radius: 50%;
+            .fa-user{
+                color: rgb(107, 107, 107);
+            }
+        }
+        
+    }
+  }
+}
+
+
+
+.dropdown-item.active{
+    background-color: white;
+    color: black;
+}
