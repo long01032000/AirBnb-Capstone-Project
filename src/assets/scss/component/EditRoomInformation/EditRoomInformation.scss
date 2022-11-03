@@ -1,0 +1,50 @@
+.edit-room-information {
+    position: relative;
+    overflow-x: scroll;
+    margin: 25px;
+    padding: 16px;
+    background-color: white;
+    height: 100vh;
+    .edit-room-information-content {
+      .edit-room-information-item {
+        h1{
+            font-size: 20px;
+        }
+        .edit-room-information-form {
+          form {
+            .col-6 {
+                text-align: end;
+              .ant-form-item {
+                .ant-row {
+                  .ant-form-item-label {
+                    text-align: right;
+                    margin-left: 195px;
+                    label {
+                    }
+                  }
+                  .ant-form-item-control {
+                    .ant-form-item-control-input {
+                      .ant-form-item-control-input-content {
+                        .ant-select {
+                          .ant-select-selector {
+                            text-align: left;
+                          }
+                        }
+                        .ant-picker {
+                          width: 269px;
+                        }
+                        button {
+                        
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  

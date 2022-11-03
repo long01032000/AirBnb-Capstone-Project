@@ -1,0 +1,125 @@
+.register {
+    position: relative;
+  
+    .register-content {
+      --bs-gutter-x: 0;
+      height: 100vh;
+      background-image: url(../../../../../public/Image/bg1.jpg);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 100%;
+  
+      .logo {
+        img {
+          position: absolute;
+          top: 48px;
+          width: 153px;
+          z-index: 0;
+          left: 48px;
+        }
+      }
+      .register-item {
+        position: absolute;
+      width: 825px;
+      height: 610px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      left: 380px;
+      top: 55px;
+        .register-item-content {
+          .title {
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 0;
+            font-family: "Inter"; 
+            font-weight: 600;
+          }
+          .nav-title {
+            text-align: center;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            margin-top: 10px;
+            line-height: 25px;
+            color: rgba(0, 0, 0, 0.47);
+          }
+        }
+        .register-form {
+        
+          form {
+            width: 757px;
+            --bs-gutter-x: 1.5rem;
+            --bs-gutter-y: 0;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px auto;
+            .col-6{
+              .ant-form-item{
+                .ant-row{
+                  display: block;
+                  margin-left: 40px;
+                  .ant-form-item-label{
+                    label{
+  
+                    }
+                  }
+                  .ant-form-item-control{
+                    max-width: 90%;
+                    .ant-form-item-control-input{
+                      .ant-form-item-control-input-content{
+                        button{
+                          position: absolute;
+                          height: 40px;
+                          padding: 0px 30px;
+                          border-radius: 5px;
+                          left: 148px;
+                          bottom: 0;
+                          top: 1px;
+                          
+                        }
+                        .ant-input-affix-wrapper {
+                          padding: 0 11px;
+                          border-radius: 10px;
+                        }
+                        input{
+                          padding: 10px 11px;
+                          border-radius: 10px;
+                        }
+                        .ant-input-group-wrapper{
+                          .ant-input-group{
+                            .ant-input-group-addon{
+                              border-radius: 10px
+                            }
+                          }
+                        }
+                        .ant-select{
+                         
+                          .ant-select-selector{
+                            height: 45px;
+                            border-radius: 10px;
+                            .ant-select-selection-item{
+                              padding-top: 6px;
+                            }
+                            .ant-select-selection-placeholder{
+                              padding-top: 6px;
+                            }
+                          }
+                        }
+                        .ant-picker{
+                          padding: 0 11px;
+                          border-radius: 10px;
+                          width: 304px;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+           
+          }
+        }
+      }
+    }
+  }
