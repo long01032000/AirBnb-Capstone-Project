@@ -1,4 +1,12 @@
 @import "./base/base";
+@import "./themes/_variable.scss";
+
+
+@import "./pages/trangchu.scss";
+@import "./pages/danhsachphong.scss";
+@import "./pages/chitietphong.scss";
+@import "./pages/header.scss";
+@import "./base/_base.scss";
 
 @import "./component/Header/Header.scss";
 

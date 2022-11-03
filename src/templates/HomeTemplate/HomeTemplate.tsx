@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
+import Footer from '../../components/Footer'
 import Header from '../../components/Header/Header'
 
 
@@ -10,6 +11,7 @@ export default function HomeTemplate({}: Props) {
     <>
      <Header/>
      <Outlet/> 
+     <Footer/>
     </>
   )
 }

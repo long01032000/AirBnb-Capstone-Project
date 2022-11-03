@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/configStore";
-import { ProductModel } from "../redux/reducers/productReducer";
+import { ProductModel } from "../../redux/reducers/productReducer";
+import { AppDispatch, RootState } from "../../redux/configStore";
 type Props = {};
 
 export default function Header({}: Props) {
@@ -12,22 +12,15 @@ export default function Header({}: Props) {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
-
-
-
-
-
-
-
-
-
   return (
     <section id="header">
       <div className="container">
         <div className="d-flex justify-content-between">
           <div className="col-4 left">
             <div className="logo">
-              <NavLink to="/"><img src={require("../assets/img/logo.png")} alt="..." /></NavLink>
+              <NavLink to="/">
+                <img src={require("../../assets/img/logo.png")} alt="..." width={70} />
+              </NavLink>
             </div>
           </div>
           <div className="col-4 middle">
@@ -35,8 +28,12 @@ export default function Header({}: Props) {
               <div className="search1">
                 <p>Địa điểm</p>
                 <select name="" id="">
-                  {arrProductViTri.map((prod:ProductModel, index:number) => {
-                    return <option  key={index} value={prod.tinhThanh}>{prod.tinhThanh}</option>
+                  {arrProductViTri.map((prod: ProductModel, index: number) => {
+                    return (
+                      <option key={index} value={prod.tinhThanh}>
+                        {prod.tinhThanh}
+                      </option>
+                    );
                   })}
                 </select>
               </div>
@@ -53,9 +50,12 @@ export default function Header({}: Props) {
                 <p>Khách</p>
               </div>
               <div className="button">
-                <button  className="btn btn-danger" onClick={() => {
-                  navigate("/DanhSachPhong")
-                }}>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => {
+                    navigate("/DanhSachPhong");
+                  }}
+                >
                   <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
               </div>

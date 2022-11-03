@@ -12,7 +12,7 @@ export const store = configureStore({
         locationReducer: locationReducer,
         roomReducer: roomReducer,
         bookRoomReducer: bookRoomReducer,
-        productReducer
+        productReducer: productReducer
     }
 })
 
