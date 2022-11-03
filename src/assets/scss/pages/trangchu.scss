@@ -1,0 +1,54 @@
+.video{
+    position: fixed;
+    bottom: -175%;
+    left: 50%;
+    transform: translateX(-50%);  
+    visibility: hidden;
+  }
+  .video video{
+    width: 800px;
+  }
+  .close{
+    position: absolute;
+    cursor: pointer;
+    text-transform: uppercase;
+    top: -40px;
+    right: 10px;
+    color: white;
+    font-size: 25px;
+  }
+  .active-hidden{
+    visibility: none;
+  }
+
+
+
+  .icon-play{
+    cursor: pointer;
+    background-color: #FC6447;
+    width: 55px;
+    height: 55px;
+    color: white;
+    display: inline-block;
+    line-height: 55px;
+    border-radius: 50%;
+    font-size: 18px;
+    border: 1px solid white;
+    animation-name: ripple;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  
+  }
+  
+  @keyframes ripple{
+    0%{
+      box-shadow: 0 0 0 0 #FFF4, 0 0 0 0 #FFF4;
+    }
+    70%{
+      box-shadow: 0 0 0 20px #FFF0, 0 0 0 40px #FFF0;
+    }
+    100%{
+      box-shadow: 0 0 0 0 #FFF1, 0 0 0 0 #FFF0;
+    }
+  }

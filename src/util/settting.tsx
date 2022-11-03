@@ -57,7 +57,7 @@ export const {
 
 // ===== Cấu hình request cho tất cả api - response cho tất cả từ api trả về ==== //
 
-const DOMAIN = "https://shop.cyberlearn.vn/api";
+const DOMAIN = "https://airbnbnew.cybersoft.edu.vn/api";
 // Cấu hình domain gửi đi
 export const http = axios.create({
   baseURL: DOMAIN,
@@ -104,3 +104,5 @@ http.interceptors.response.use(
     }
   }
 );
+
+

@@ -1,0 +1,95 @@
+@import "../themes/_variable.scss";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .container {
+    max-width: 1280px;
+  }
+
+  img {
+    display: block;
+  }
+  
+  li {
+    list-style: none;
+  }
+  button {
+    border: none;
+  }
+
+
+  a {
+    text-decoration: none;
+    color: black;
+    &:hover {
+      color: black;
+    }
+  }
+  .sign-join{
+    border: 1px solid white;
+    padding: 10px 15px;
+    border-radius: 50px;
+  }
+
+  .dropdown-menu[data-bs-popper] {
+    left: -107px
+  }
+
+// =============== click-carousel ========== //
+.slick-next:before{
+  color: black;
+  font-size: 25px;
+  top: 20%;
+}
+.slick-prev:before{
+  color: black;
+  font-size: 25px;
+  top: 20%;
+}
+.slick-next{
+  top: 30%;
+  left: 100%;
+}
+.slick-prev{
+  top: 30%;
+  right: 100%;
+}
+
+.item-icon1, .item-icon2, .item-icon3, .item-icon4,.item-icon5,.item-icon6,.item-icon7,.item-icon8,.item-icon9, .item-icon10, .item-icon11, .item-icon12, .item-icon13, .item-icon14, .item-icon15{
+  text-align: center;
+  
+  img {
+    margin-left: 25px;
+  }
+}
+.item-icon1, .item-icon2, .item-icon3, .item-icon4,.item-icon5,.item-icon6,.item-icon7,.item-icon8,.item-icon9, .item-icon10, .item-icon11, .item-icon12, .item-icon13, .item-icon14, .item-icon15{
+  position: relative;
+  &::after{
+    content: "";
+    position: absolute;  
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: gray;
+    opacity: 0;
+    transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  &:hover{
+    &::after{
+      opacity: 1;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
