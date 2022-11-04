@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {  Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 
 import HomeTemplate from "./templates/HomeTemplate/HomeTemplate";
 
-import 'antd/dist/antd.css';
-import './assets/scss/style.scss';
+import "antd/dist/antd.css";
+import "./assets/scss/style.scss";
 import Register from "./pages/Register/Register";
 import { Provider } from "react-redux";
 import { store } from "./redux/configStore";
@@ -28,17 +28,7 @@ import Index from "./pages/Index/Index";
 import DanhSachPhong from "./pages/DanhSachPhong/DanhSachPhong";
 import ChiTietPhong from "./pages/ChiTietPhong/ChiTietPhong";
 
-
 export const history = createBrowserHistory({ window });
-
-
-
-
-
-
-
-
-
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -46,35 +36,39 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <HistoryRouter history={history}>
-    <Routes>
-      <Route path="/" element={<HomeTemplate/>}>
-      <Route index element={<Index />}></Route>
-        <Route path="/DanhSachPhong" element={<DanhSachPhong />}></Route>
-        <Route path="/ChiTietPhong">
-        <Route path=":id"  element={<ChiTietPhong />}></Route>
+      <Routes>
+        <Route path="/" element={<HomeTemplate />}>
+          <Route index element={<Index />}></Route>
+          <Route path="/DanhSachPhong">
+          <Route path=":id" element={<DanhSachPhong />}/>
+          </Route>
+          <Route path="/ChiTietPhong">
+            <Route path=":id" element={<ChiTietPhong />}></Route>
+          </Route>
+          <Route path="home" element={<Home />}></Route>
         </Route>
-        <Route path="home" element={<Home/>}></Route>
-      </Route>
-      <Route path="register" element={<Register/>}></Route>
-      <Route path="login" element={<Login/>}></Route>  
-      <Route path="admin" element={<DashboardTemplate/>}>
-        {/* <Route path="/admin/userManagement" element={<AddAdminRender/>}></Route> */}
-        <Route path="userManagement" element={<UserManagement/>}>
+        <Route path="register" element={<Register />}></Route>
+        <Route path="login" element={<Login />}></Route>
+        <Route path="admin" element={<DashboardTemplate />}>
+          <Route path="userManagement" element={<UserManagement />}></Route>
+          <Route
+            path="locationInformation"
+            element={<LocationInformation />}
+          ></Route>
+          <Route path="roomInformation" element={<RoomInformation />}></Route>
+          <Route
+            path="bookRoomManagement"
+            element={<BookRoomManagement />}
+          ></Route>
+          <Route path="editUser/:id" element={<EditUser />}></Route>
+          <Route path="editLocation/:id" element={<EditLocation />}></Route>
+          <Route path="editBookRoom/:id" element={<EditBookRoom />}></Route>
+          <Route
+            path="editRoomInformation/:id"
+            element={<EditRoomInformation />}
+          ></Route>
         </Route>
-        <Route path="locationInformation" element={<LocationInformation/>}>
-        </Route>
-        <Route path="roomInformation" element={<RoomInformation />}>
-        </Route>
-        <Route path="bookRoomManagement" element={<BookRoomManagement />}>
-        </Route>
-        <Route path="editUser/:id" element={<EditUser/>}></Route>
-        <Route path="editLocation/:id" element={<EditLocation/>}></Route>
-        <Route path="editBookRoom/:id" element={<EditBookRoom/>}></Route>
-        <Route path="editRoomInformation/:id" element={<EditRoomInformation/>}></Route>
-        
-      </Route>
-    </Routes>
-  </HistoryRouter>
+      </Routes>
+    </HistoryRouter>
   </Provider>
 );
-

@@ -1,40 +1,69 @@
 section#header {
-    padding: 20px 0;
+  padding: 20px 0;
+  border-bottom: 1px solid #00000014;
   .left {
     .logo {
       img {
         width: 140px;
         @media screen and (max-width: 767px) {
-            width: 100px;
+          width: 100px;
         }
       }
     }
   }
   .middle {
     @media screen and (max-width: 767px) {
-        display: none;
+      display: none;
     }
     .search {
       display: flex;
-      border: 1px solid grey;
       justify-content: space-between;
-        width: 450px;
-        padding: 5px 8px;
+      width: 450px;
+      padding: 5px 8px;
       align-items: center;
-      border-radius: 50px;
+      border: 1px solid #dddddd;
+      border-radius: 40px;
+      background-color: #ffffff;
       .search1 {
-    padding-left: 10px;
+        padding-left: 10px;
         p {
+          margin-left: 18px;
           margin-bottom: 0;
+          font-size: 14px;
+          line-height: 18px;
+          font-weight: 600;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
-        
+        .ant-form-item-control-input {
+          position: relative;
+          display: flex;
+          align-items: center;
+          min-height: 26px;
+          .ant-select-selector {
+            border-radius: 5px;
+            font-size: 12px;
+          }
+      }
+       
       }
       .search2 {
         border-left: 1px solid gray;
         padding-left: 10px;
 
         p {
-          margin-bottom: 0;
+          margin-bottom: 2px;
+          font-size: 14px;
+          line-height: 18px;
+          font-weight: 600;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        span{
+          font-size: 14px;
+          line-height: 18px;
         }
       }
       .search3 {
@@ -42,19 +71,40 @@ section#header {
         padding-left: 10px;
 
         p {
-          margin-bottom: 0;
+          margin-bottom: 2px;
+          font-size: 14px;
+          line-height: 18px;
+          font-weight: 600;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        span{
+          font-size: 14px;
+          line-height: 18px;
         }
       }
       .search4 {
         padding-left: 10px;
         border-left: 1px solid gray;
-        margin-left: 30px;
+
         p {
-          margin-bottom: 0;
+          margin-bottom: 2px;
+          font-size: 14px;
+          line-height: 18px;
+          font-weight: 600;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        span{
+          font-size: 14px;
+          line-height: 18px;
         }
       }
       .button {
-        margin-left: 30px;
+        margin-left: 5px;
+        height: 45px;
         button {
           border-radius: 50%;
           width: 45px;
@@ -69,65 +119,61 @@ section#header {
     justify-content: center;
     align-items: center;
     @media screen and (max-width: 767px) {
-        width: 300px;
+      width: 300px;
     }
-    p{
-        margin-left: 100px;
-        margin-bottom: 0;
-        @media screen and (max-width: 767px) {
-            margin-left: 0;
-            width: 100px;
-        }
+    p {
+      margin-left: 100px;
+      margin-bottom: 0;
+      @media screen and (max-width: 767px) {
+        margin-left: 0;
+        width: 100px;
+      }
     }
-    .sign-up-in{
-        padding: 0 5px;
-        width: 150px;
+    .sign-up-in {
+      padding: 0 5px;
+      width: 150px;
+      display: none;
+      font-weight: 500;
+      @media screen and (max-width: 768px) {
+        display: block;
+      }
+    }
+    .language {
+      margin-left: 30px;
+      cursor: pointer;
+      @media screen and (max-width: 767px) {
         display: none;
-        font-weight: 500;
-        @media screen and (max-width: 768px) {
-            display: block;
-        }
+      }
     }
-    .language{
-        margin-left: 30px;
-        cursor: pointer;
-        @media screen and (max-width: 767px) {
-            display: none;
+    button {
+      background-color: white;
+      color: black;
+      border-radius: 1px solid gray;
+      border-radius: 50px;
+      width: 78px;
+      margin-left: 30px;
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
+      .bars {
+        margin-right: 10px;
+        .fa-bars {
+          color: rgb(107, 107, 107);
         }
-    }
-    button{
-        background-color: white;
-        color: black;
-        border-radius: 1px solid gray;
-        border-radius: 50px;
-        width: 78px;
-        margin-left: 30px;
-        @media screen and (max-width: 767px) {
-            display: none;
-        }
-        .bars{
-            margin-right: 10px;
-            .fa-bars{
-                color: rgb(107, 107, 107);
-            }
-        }
-        .user{
-         
-         background-color: rgb(216, 216, 216);
+      }
+      .user {
+        background-color: rgb(216, 216, 216);
         padding: 3px 6px;
         border-radius: 50%;
-            .fa-user{
-                color: rgb(107, 107, 107);
-            }
+        .fa-user {
+          color: rgb(107, 107, 107);
         }
-        
+      }
     }
   }
 }
 
-
-
-.dropdown-item.active{
-    background-color: white;
-    color: black;
+.dropdown-item.active {
+  background-color: white;
+  color: black;
 }

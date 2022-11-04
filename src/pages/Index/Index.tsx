@@ -1,8 +1,10 @@
-
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/configStore";
-import { getProductApi, ProductModel } from "../../redux/reducers/productReducer";
+import {
+  getProductApi,
+  ProductModel,
+} from "../../redux/reducers/productReducer";
 
 //
 import Slider from "react-slick";
@@ -10,44 +12,51 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { NavLink, useNavigate } from "react-router-dom";
 
-
-
-
 type Props = {};
 
 export default function Home({}: Props) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const { arrProductViTri } = useSelector(
     (state: RootState) => state.productReducer
-    );
-    useEffect(() => {
+  );
+  useEffect(() => {
     const action = getProductApi();
     dispatch(action);
   }, []);
   console.log(arrProductViTri);
 
-
-
-
-
-
-
   const renderProduct = () => {
     return arrProductViTri?.map((prod: ProductModel, index: number) => {
       return (
-        <div className="col-3 p-3"   key={index}>
-          <div className="card" style={{overflow: "hidden"}}>
-            <button className="bg-transparent w-100" onClick={() => {
-                navigate(`/DanhSachPhong`)
-            }}><img src={prod.hinhAnh} alt={prod.tinhThanh} height="200px" width="100%" style={{objectFit: "cover"}}/></button>
+        <div className="col-3 p-3 container" key={index}>
+          <div className="card" style={{ overflow: "hidden" }}>
+            <button
+              className="bg-transparent w-100"
+              onClick={() => {
+                navigate(`/DanhSachPhong`);
+              }}
+            >
+              <img
+                src={prod.hinhAnh}
+                alt={prod.tinhThanh}
+                height="200px"
+                width="100%"
+                style={{ objectFit: "cover" }}
+              />
+            </button>
             <div className="card-body">
-              <p style={{fontSize: 20, fontWeight: 500}}>{prod.tinhThanh}</p>
+              <p style={{ fontSize: 20, fontWeight: 500 }}>{prod.tinhThanh}</p>
               <p>{prod.tenViTri}</p>
               <p>{prod.quocGia}</p>
-              <button className="btn btn-outline-danger" onClick={() => {
-                navigate(`/ChiTietPhong/${prod.id}`)
-              }}>Xem Phòng</button>
+              <button
+                className="btn btn-outline-danger"
+                onClick={() => {
+                  navigate(`/ChiTietPhong/${prod.id}`);
+                }}
+              >
+                Xem Phòng
+              </button>
             </div>
           </div>
         </div>
@@ -60,40 +69,30 @@ export default function Home({}: Props) {
     speed: 500,
     slidesToShow: 14,
     slidesToScroll: 1,
-    responsive: [{
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 4,
-      }
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 6,
-      }
-    }
-  ]
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 6,
+        },
+      },
+    ],
   };
 
-  let video = document.querySelector(".video")
+  let video = document.querySelector(".video");
   let onClickBtn = () => {
-    video?.classList.toggle("active-hidden")
-  }
+    video?.classList.toggle("active-hidden");
+  };
 
-
-
-
-
-
-
-
-
-
-  
   return (
-    <section id="index" className="container" style={{width: "100vw"}}>
-
-      <div id="top" style={{position: "relative"}}>
+    <section id="index"  style={{ width: "100vw" }}>
+      <div id="top" style={{ position: "relative" }}>
         <div
           id="carouselExampleIndicators"
           className="carousel slide"
@@ -163,25 +162,45 @@ export default function Home({}: Props) {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
-        <div className="btn-play text-center" onClick={onClickBtn} style={{position: "absolute", top: "50%", left: "50%", transform: "transLateX(-50%)"}}>
-          <div className="play text-center" style={{width: 200}}>
-          <div className="icon-play">
-            
-          <i className="fa-solid fa-play"></i>
-          </div>
-            <p className="text-white" style={{fontSize: 20, fontWeight: 400}}>Play Video</p>
+        <div
+          className="btn-play text-center"
+          onClick={onClickBtn}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "transLateX(-50%)",
+          }}
+        >
+          <div className="play text-center" style={{ width: 200 }}>
+            <div className="icon-play">
+              <i className="fa-solid fa-play"></i>
+            </div>
+            <p className="text-white" style={{ fontSize: 20, fontWeight: 400 }}>
+              Play Video
+            </p>
           </div>
           <div className="video">
-            <video src="https://www.youtube.com/embed/uSHSdasYsAU" controls></video>
+            <video
+              src="https://www.youtube.com/embed/uSHSdasYsAU"
+              controls
+            ></video>
             <p className="close">Close</p>
           </div>
         </div>
-
-
       </div>
-    {/* end top */}
+      {/* end top */}
 
-    <div id="middle" className="text-dark pt-3" style={{ width: "100%", height: 120, marginTop: 80, padding: "0px 20px 0px 20px" }}>
+      <div
+        id="middle"
+        className="text-dark pt-3"
+        style={{
+          width: "100%",
+          height: 120,
+          marginTop: 80,
+          padding: "0px 20px 0px 20px",
+        }}
+      >
         <Slider {...settings}>
           <NavLink to="#" className="item-icon1">
             <img src="./img/icon/1.jpg" alt="icon" width="40" height="40" />
@@ -245,15 +264,12 @@ export default function Home({}: Props) {
           </NavLink>
         </Slider>
       </div>
-    {/* end middle */}
+      {/* end middle */}
 
       <div className="bottom">
-        <div className="row">
-            {renderProduct()}
-        </div>
+        <div className="row">{renderProduct()}</div>
       </div>
       {/* end bottom */}
-
     </section>
   );
 }

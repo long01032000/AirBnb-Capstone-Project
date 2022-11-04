@@ -5,7 +5,8 @@ type Props = {};
 export default function Footer({}: Props) {
   return (
     <section id="footer" style={{backgroundColor: "#F7F7F7"}}>
-      <div className="d-flex">
+      <div className="container">
+        <div className="row">
         <div className="col-3 ">
           <ul>
             <li className="fw-bolder">Giới thiệu</li>
@@ -50,11 +51,12 @@ export default function Footer({}: Props) {
             <li>Nhà đầu tư</li>
           </ul>
         </div>
+        </div>
       </div>
      <div>
         <hr />
      </div>
-     <div>
+     <div className="container text-center">
      © 2022 Airbnb, Inc.·Quyền riêng tư·Điều khoản·Sơ đồ trang web
      </div>
     </section>

@@ -1,22 +1,31 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../../redux/configStore";
 import { getProductAllRoom, ProductModelRoom } from "../../redux/reducers/productReducer";
+import { getAllRoomInformationAction, GetAllRoomInformationModel, getRoomInformationApi, getRoomInformationByLocationCodeApi } from "../../redux/reducers/roomReducer";
 
 type Props = {};
 
 export default function DanhSachPhong({}: Props) {
   const dispatch: AppDispatch = useDispatch();
-  const {arrProductAllRoom} = useSelector((state: RootState) => state.productReducer)
+  const {arrRoomInformation} = useSelector((state: RootState) => state.roomReducer)
   const navigate = useNavigate()
-  const getAllRoom = () => {
-    const action = getProductAllRoom();
-    dispatch(action)
-  }
+  // const getAllRoom = () => {
+  //   const action = getProductAllRoom();
+  //   dispatch(action)
+  // }
+  // useEffect(() => {
+  //   dispatch(getRoomInformationApi());
+  // }, [])
+  const params = useParams();
+
   useEffect(() => {
-    getAllRoom();
-  }, [])
+    let maViTri: any = params;
+    console.log(maViTri)
+    const action = getRoomInformationByLocationCodeApi(maViTri);
+    dispatch(action);
+  }, []);
 
 
   // ======================= //
@@ -34,7 +43,7 @@ export default function DanhSachPhong({}: Props) {
             <button className="btn">Bộ lọc khác</button>
           </div>
           <div className="room">
-            {arrProductAllRoom?.map((prod:ProductModelRoom, index:number) => {
+            {arrRoomInformation?.map((prod:GetAllRoomInformationModel, index:number) => {
               return <div className="room-item" key={index}>
                   <div className="image">
                     <button className="bg-transparent" onClick={() => {

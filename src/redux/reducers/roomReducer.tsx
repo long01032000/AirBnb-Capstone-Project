@@ -38,7 +38,7 @@ export interface UpdateRoomInformationModel extends GetAllRoomInformationModel{
 
 const initialState: any = {
   arrRoomInformation: [],
-  roomInformationEdit: {}
+  roomInformationEdit: {},
 };
 
 const roomReducer = createSlice({
@@ -55,6 +55,9 @@ const roomReducer = createSlice({
       );
       state.arrRoomInformation = deleteRoomInformation;
     },
+    getRoomInformationByLocationCodeAction:  (state, action: PayloadAction<any>) => {
+      state.arrRoomInformation = action.payload;
+    },
     getRoomInformationByIdAction: (state, action: PayloadAction<any>) => {
       state.roomInformationEdit = action.payload;
     },
@@ -62,7 +65,7 @@ const roomReducer = createSlice({
   },
 );
 
-export const { getAllRoomInformationAction ,deleteRoomInformationAction,getRoomInformationByIdAction} =
+export const { getAllRoomInformationAction ,deleteRoomInformationAction,getRoomInformationByIdAction,getRoomInformationByLocationCodeAction} =
   roomReducer.actions;
 
 export default roomReducer.reducer;
@@ -113,6 +116,18 @@ export const getRoomInformationByIdApi = (id: number) => {
     try {
       const result = await http.get(`/phong-thue/${id}`);
       const action = getRoomInformationByIdAction(result.data.content);
+      dispatch(action);
+    } catch (err: any) {
+      console.log(err);
+    }
+  };
+};
+
+export const getRoomInformationByLocationCodeApi = (id: {id: string}) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const result = await http.get(`/phong-thue/lay-phong-theo-vi-tri?maViTri=${id.id}`);
+      const action = getRoomInformationByLocationCodeAction(result.data.content);
       dispatch(action);
     } catch (err: any) {
       console.log(err);

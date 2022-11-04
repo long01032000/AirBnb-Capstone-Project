@@ -44,7 +44,7 @@ export default function DashboardTemplate({}: Props) {
             <div
               onClick={() => {
                 alert("Logout Sucess");
-                navigate("/home");
+                navigate("/");
                 localStorage.clear();
                 window.location.reload();
               }}

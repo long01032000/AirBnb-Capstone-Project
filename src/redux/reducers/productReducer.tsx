@@ -1,7 +1,8 @@
 // import { display } from "@mui/system";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { http } from "../../util/settting";
+import { http } from "../../util/setting";
+
 import { AppDispatch } from "../configStore";
 
 export interface ProductModel {
