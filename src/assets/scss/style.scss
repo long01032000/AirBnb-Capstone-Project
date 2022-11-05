@@ -1,4 +1,4 @@
-@import "./base/base";
+@import "./base/_base.scss";
 @import "./themes/_variable.scss";
 
 
@@ -6,7 +6,6 @@
 @import "./pages/danhsachphong.scss";
 @import "./pages/chitietphong.scss";
 @import "./pages/header.scss";
-@import "./base/_base.scss";
 
 @import "./pages/Login/Login.scss";
 
