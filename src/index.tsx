@@ -27,6 +27,7 @@ import EditBookRoom from "./components/EditBookRoom/EditBookRoom";
 import Index from "./pages/Index/Index";
 import DanhSachPhong from "./pages/DanhSachPhong/DanhSachPhong";
 import ChiTietPhong from "./pages/ChiTietPhong/ChiTietPhong";
+import DetailUser from "./pages/DetailUser/DetailUser";
 
 export const history = createBrowserHistory({ window });
 
@@ -45,6 +46,7 @@ root.render(
           <Route path="/ChiTietPhong">
             <Route path=":id" element={<ChiTietPhong />}></Route>
           </Route>
+          <Route path="Thongtinchitiet" element={<DetailUser/>}/>
           <Route path="*" element={<Navigate to="" />}></Route>
         </Route>
         <Route path="register" element={<Register />}></Route>

@@ -2,17 +2,33 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../../redux/configStore";
-import { DatePicker, Space } from "antd";
+import { Avatar, DatePicker, Form, InputNumber, Space } from "antd";
 import { getProductRoom } from "../../redux/reducers/productReducer";
 import { Radio, Select } from "antd";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
 import type { SelectProps, RadioChangeEvent } from "antd";
-import { StarFilled, SafetyCertificateFilled,ShareAltOutlined ,HeartOutlined} from "@ant-design/icons";
+import {
+  StarFilled,
+  SafetyCertificateFilled,
+  ShareAltOutlined,
+  HeartOutlined,
+} from "@ant-design/icons";
+import moment from "moment";
+import { GetUserRoleUserByIdApi } from "../../redux/reducers/userRoleUserReducer";
+import { getStoreJson, USER_LOGIN } from "../../util/setting";
+import { postBookRoomApi } from "../../redux/reducers/bookRoomReducer";
 type Props = {};
 
 export default function ChiTietPhong({}: Props) {
   const params = useParams();
+  const userLogin = getStoreJson(USER_LOGIN);
   const dispatch: AppDispatch = useDispatch();
+  const { imageUser } = useSelector(
+    (state: RootState) => state.userRoleUserReducer
+  );
+  useEffect(() => {
+    dispatch(GetUserRoleUserByIdApi(userLogin.user.id));
+  }, []);
   const { RangePicker } = DatePicker;
   const options: SelectProps["options"] = [];
   for (let i = 10; i < 36; i++) {
@@ -21,6 +37,9 @@ export default function ChiTietPhong({}: Props) {
       label: i.toString(36) + i,
     });
   }
+  const rangeConfig = {
+    rules: [{ type: "array" as const }],
+  };
 
   const handleChange = (value: string | string[]) => {
     console.log(`Selected: ${value}`);
@@ -42,6 +61,20 @@ export default function ChiTietPhong({}: Props) {
     (state: RootState) => state.productReducer
   );
 
+  const onFinish = (fieldsValue: any) => {
+    const values = {
+      ...fieldsValue,
+      maNguoiDung: userLogin.user.id,
+      ngayDen: moment(fieldsValue["ngayDen"]),
+      ngayDi: moment(fieldsValue["ngayDi"]),
+      // 'range-picker': [rangeValue[0].format('YYYY-MM-DD'), rangeValue[1].format('YYYY-MM-DD')]
+      // 'ngayDi': moment([rangeValue[0].format('YYYY-MM-DD'), rangeValue[1].format('YYYY-MM-DD')]),
+    };
+    dispatch(postBookRoomApi(values));
+    console.log("Received values of form: ", values);
+  };
+  const [form] = Form.useForm();
+
   useEffect(() => {
     getRoomApi();
   }, [params.id]);
@@ -52,15 +85,19 @@ export default function ChiTietPhong({}: Props) {
     <section id="ChiTietPhong" className="container">
       <h2>{tenPhong}</h2>
       <div className="nav-title">
-        
-          <StarFilled size={20} />
-          <li> {parseFloat(Math.random().toFixed(2)) * (5 - 4 + 1) + 3}</li>
-          <li className="dot"></li> <SafetyCertificateFilled />{" "}
-          <li className="chuNha">Chủ nhà siêu cấp</li>
-          <ul className="share"><ShareAltOutlined /><li>Chia sẻ</li></ul>
-          <ul className="like"> <HeartOutlined /><li>Lưu</li></ul>
-         
-      
+        <StarFilled size={20} />
+        <li> {parseFloat(Math.random().toFixed(2)) * (5 - 4 + 1) + 3}</li>
+        <li className="dot"></li> <SafetyCertificateFilled />{" "}
+        <li className="chuNha">Chủ nhà siêu cấp</li>
+        <ul className="share">
+          <ShareAltOutlined />
+          <li>Chia sẻ</li>
+        </ul>
+        <ul className="like">
+          {" "}
+          <HeartOutlined />
+          <li>Lưu</li>
+        </ul>
       </div>
       <div className="img">
         <img src={hinhAnh} alt="" className="w-100" />
@@ -76,7 +113,7 @@ export default function ChiTietPhong({}: Props) {
               </p>
             </div>
             <div className="avatar">
-              <img src="https://i.pravatar.cc/50?img=5" alt="" />
+              <Avatar size={60} src={imageUser.avatar} />
             </div>
           </div>
 
@@ -287,38 +324,46 @@ export default function ChiTietPhong({}: Props) {
               </div>
             </div>
             <div className="book">
-              <div className="date">
-                <Space direction="vertical" size={15}>
-                  <RangePicker
-                    style={{
-                      width: 320,
-                      padding: 15,
-                      borderRadius: "20px 20px 0px 0px",
-                    }}
-                  />
-                </Space>
-              </div>
-              <div className="select">
-                <Select
-                  size={size}
-                  defaultValue="a1"
-                  onChange={handleChange}
-                  style={{
-                    width: 320,
-                    padding: "10px 0",
-                    border: "1px solid #CFD6DC",
-                    borderRadius: "0px 0px 20px 20px",
-                  }}
-                  options={options}
-                  bordered={false}
-                />
-              </div>
-              <button
-                className="btn btn-danger"
-                style={{ width: 320, marginTop: 15 }}
+              <Form
+              style={{marginTop: 15}}
+                form={form}
+                name="add_bookRoom"
+                onFinish={onFinish}
+                initialValues={{
+                  prefix: "84",
+                }}
+                scrollToFirstError
               >
-                Đặt phòng
-              </button>
+                <Form.Item name="ngayDen">
+                  <DatePicker
+                    placeholder="Check In"
+                    style={{ width: "100%" }}
+                  />
+                </Form.Item>
+
+                <Form.Item name="ngayDi">
+                  <DatePicker
+                    placeholder="Check Out"
+                    style={{ width: "100%" }}
+                  />
+                </Form.Item>
+
+                <Form.Item  name="soLuongKhach" style={{width: "100%"}}>
+                  <InputNumber style={{ width: '100%' }} placeholder="Guest" min={1} max={10} />
+                </Form.Item>
+                <Form.Item
+                className="text-center"
+                wrapperCol={{ span: 10, offset: 0 }}
+              >
+                 <button
+                  className="btn btn-danger"
+                  style={{ width: 320, marginTop: 0 }}
+                >
+                  Đặt phòng
+                </button>
+              </Form.Item>
+               
+              </Form>
             </div>
           </div>
         </div>

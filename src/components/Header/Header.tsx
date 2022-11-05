@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductModel } from "../../redux/reducers/productReducer";
 import { AppDispatch, RootState } from "../../redux/configStore";
-import { Button, DatePicker, Form, Input, Select } from "antd";
+import { Avatar, Button, DatePicker, Form, Image, Input, Select } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import {  getRoomInformationByLocationCodeApi } from "../../redux/reducers/roomReducer";
+import { getRoomInformationByLocationCodeApi } from "../../redux/reducers/roomReducer";
+import { getStoreJson, USER_LOGIN } from "../../util/setting";
+import { UserOutlined, CheckOutlined } from "@ant-design/icons";
+import { GetUserRoleUserByIdApi } from "../../redux/reducers/userRoleUserReducer";
 type Props = {};
 
 export default function Header({}: Props) {
   const [form] = Form.useForm();
   const { Option } = Select;
+  const userLogin = getStoreJson(USER_LOGIN);
+  const { imageUser } = useSelector(
+    (state: RootState) => state.userRoleUserReducer
+  );
+  useEffect(() => {
+    dispatch(GetUserRoleUserByIdApi(userLogin.user.id));
+  }, []);
+
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const onFinish = (value: any) => {
     console.log("Received values of form: ", value);
-    dispatch(getRoomInformationByLocationCodeApi(value))
+    dispatch(getRoomInformationByLocationCodeApi(value));
     navigate(`/DanhSachPhong/${value.id}`);
   };
 
@@ -35,9 +46,14 @@ export default function Header({}: Props) {
             </div>
           </div>
           <div className="col-4 middle">
-            <Form form={form} onFinish={onFinish} initialValues={{
-              id : "1"
-            }} scrollToFirstError>
+            <Form
+              form={form}
+              onFinish={onFinish}
+              initialValues={{
+                id: "1",
+              }}
+              scrollToFirstError
+            >
               <div className="search">
                 <div className="search1">
                   <p>Địa điểm</p>
@@ -79,7 +95,11 @@ export default function Header({}: Props) {
                 </div>
                 <div className="button">
                   <Form.Item>
-                    <Button className="btn btn-danger" htmlType="submit" style={{backgroundColor:"#ff385c", color: "white"}}>
+                    <Button
+                      className="btn btn-danger"
+                      htmlType="submit"
+                      style={{ backgroundColor: "#ff385c", color: "white" }}
+                    >
                       <SearchOutlined size={30} />
                     </Button>
                   </Form.Item>
@@ -97,12 +117,12 @@ export default function Header({}: Props) {
           </div>
           <div className="col-4 right">
             <p>Đón tiếp khách</p>
-            <div className="sign-up-in">
+            {/* <div className="sign-up-in">
               <NavLink to="login" className="me-2">
                 Đăng nhập
               </NavLink>
               <NavLink to="register">Đăng ký</NavLink>
-            </div>
+            </div> */}
             <div className="language">
               <i className="fa-solid fa-globe"></i>
             </div>
@@ -116,12 +136,49 @@ export default function Header({}: Props) {
                 <span className="bars">
                   <i className="fa-solid fa-bars"></i>
                 </span>
-                <span className="user">
-                  <i className="fa-solid fa-user"></i>
-                </span>
+                {imageUser ? (
+                  <Avatar size={20} src={imageUser.avatar} />
+                ) : (
+                  <Avatar size={20} icon={<UserOutlined />} />
+                )}
               </button>
               <ul className="dropdown-menu">
-                <li>
+                {userLogin ? (
+                  <>
+                    <li>
+                      <NavLink className="dropdown-item" to="Thongtinchitiet">
+                        Thông Tin Chi Tiết
+                      </NavLink>
+                    </li>
+                    <li>
+                      <a
+                        className="dropdown-item"
+                        onClick={() => {
+                          alert("Logout Success");
+                          navigate("/");
+                          localStorage.clear();
+                          window.location.reload();
+                        }}
+                      >
+                        Đăng Xuất
+                      </a>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <NavLink className="dropdown-item" to="login">
+                        Đăng nhập
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink className="dropdown-item" to="register">
+                        Đăng ký
+                      </NavLink>
+                    </li>
+                  </>
+                )}
+                {/* <li>
                   <NavLink className="dropdown-item" to="login">
                     Đăng nhập
                   </NavLink>
@@ -130,7 +187,7 @@ export default function Header({}: Props) {
                   <NavLink className="dropdown-item" to="register">
                     Đăng ký
                   </NavLink>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

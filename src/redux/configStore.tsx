@@ -4,6 +4,7 @@ import locationReducer from './reducers/locationReducer';
 import roomReducer from './reducers/roomReducer';
 import userReducer from './reducers/userReducer';
 import productReducer from "./reducers/productReducer"
+import userRoleUserReducer from './reducers/userRoleUserReducer';
 
 
 export const store = configureStore({
@@ -12,7 +13,8 @@ export const store = configureStore({
         locationReducer: locationReducer,
         roomReducer: roomReducer,
         bookRoomReducer: bookRoomReducer,
-        productReducer: productReducer
+        productReducer: productReducer,
+        userRoleUserReducer: userRoleUserReducer
     }
 })
 
