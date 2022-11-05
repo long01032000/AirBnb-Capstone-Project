@@ -41,7 +41,7 @@ export default function Home({}: Props) {
     return arrRoomInformation?.map(
       (prod: GetAllRoomInformationModel, index: number) => {
         return (
-          <div className="col-3 p-3 container" key={index}>
+          <div className="col-sm-4 col-md-3 col-12 p-3 container" key={index}>
             <NavLink
               className="card"
               style={{ overflow: "hidden" }}
