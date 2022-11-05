@@ -67,7 +67,7 @@ export default function Register({}: Props) {
       <section className="register">
         <div className="register-content">
           <div className="logo">
-            <NavLink to="/home">
+            <NavLink to="/">
               <img src="Image/logo.svg" alt="..." />
             </NavLink>
           </div>

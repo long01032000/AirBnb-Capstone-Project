@@ -59,31 +59,42 @@
             color: rgba(0, 0, 0, 0.47);
           }
         }
-        .login-form {
-          width: 358px;
-          height: 294px;
-          margin: 30px auto;
-          .ant-form {
-            .ant-form-item {
-              .ant-row {
-                .ant-col {
-                  .ant-form-item-control-input {
-                    .ant-form-item-control-input-content {
-                      label {
-                      }
-                      .login-form-forgot {
-                        margin-left: 129px;
-                      }
-                      button {
-                        margin-right: 5px;
-                        border-radius: 5px;
-                        padding: 0 158px;
-                        height: 40px;
-                      }
-                      .ant-input-affix-wrapper {
-                        padding: 10px 11px;
-                        border-radius: 10px;
-                      }
+        .nav-title {
+          text-align: center;
+          margin-top: 5px;
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 25px;
+
+          color: rgba(0, 0, 0, 0.47);
+        }
+      }
+      .login-form {
+        width: 358px;
+        height: 294px;
+        margin: 30px auto;
+        .ant-form {
+          .ant-form-item {
+            .ant-row {
+              .ant-col {
+                .ant-form-item-control-input {
+                  .ant-form-item-control-input-content {
+                    label {
+                    }
+                    .login-form-forgot {
+                      margin-left: 129px;
+                    }
+                    button {
+                      margin-right: 5px;
+                      border-radius: 5px;
+                      padding: 0 158px;
+                      height: 40px;
+                    }
+                    .ant-input-affix-wrapper {
+                      padding: 10px 11px;
+                      border-radius: 10px;
                     }
                   }
                 }
@@ -94,3 +105,4 @@
       }
     }
   }
+

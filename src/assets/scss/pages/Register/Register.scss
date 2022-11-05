@@ -1,21 +1,30 @@
 .register {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
     position: relative;
   
     .register-content {
       --bs-gutter-x: 0;
       height: 100vh;
-      background-image: url(../../../img/banner/banner3.png);
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 100%;
-  
+      background-image: url(../../../img/banner/banner2.png);
+      background-position: center;
+      background-size: cover;
+      @media screen and (max-width: 767px) {
+        background-position: center;
+        background-size: cover;
+        }
       .logo {
         img {
           position: absolute;
-          top: 48px;
+          top: 3%;
+          left: 3%;
           width: 153px;
           z-index: 0;
-          left: 48px;
+          @media screen and (max-width: 767px) {
+           left: 50%;
+           transform: translateX(-50%);
+            }
         }
       }
       .register-item {
@@ -24,9 +33,16 @@
       height: 610px;
       background: rgba(255, 255, 255, 0.95);
       border-radius: 10px;
-      left: 380px;
-      top: 55px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @media screen and (max-width: 767px) {
+        width: 90%;
+        top: 55%;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
         .register-item-content {
+
           .title {
             text-align: center;
             margin-top: 25px;
@@ -46,7 +62,7 @@
           }
         }
         .register-form {
-        
+          height: 100%;
           form {
             width: 757px;
             --bs-gutter-x: 1.5rem;
@@ -54,8 +70,19 @@
             display: flex;
             flex-wrap: wrap;
             margin: 20px auto;
+            @media screen and (max-width: 767px) {
+                
+                }
             .col-6{
+              @media screen and (max-width: 767px) {
+                width: 45%;
+           
+
+           }
               .ant-form-item{
+                @media screen and (max-width: 767px) {
+                  margin-bottom: 0;
+                  }
                 .ant-row{
                   display: block;
                   margin-left: 40px;
@@ -66,16 +93,24 @@
                   }
                   .ant-form-item-control{
                     max-width: 90%;
+                    @media screen and (max-width: 767px) {
+                         max-width: 60%;
+                    
+
+                    }
                     .ant-form-item-control-input{
                       .ant-form-item-control-input-content{
-                        button{
-                          position: absolute;
+                        button{                       
                           height: 40px;
                           padding: 0px 30px;
                           border-radius: 5px;
-                          left: 148px;
-                          bottom: 0;
-                          top: 1px;
+                          left: 50%;
+                         
+                                               
+                          @media screen and (max-width: 767px) {
+                            
+                            margin-top: 20%; 
+                            }
                           
                         }
                         .ant-input-affix-wrapper {
