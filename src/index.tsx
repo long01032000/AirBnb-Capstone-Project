@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Home from "./pages/Home/Home";
+
 import Login from "./pages/Login/Login";
 
 import HomeTemplate from "./templates/HomeTemplate/HomeTemplate";

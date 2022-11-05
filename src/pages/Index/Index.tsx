@@ -41,7 +41,7 @@ export default function Home({}: Props) {
     return arrRoomInformation?.map(
       (prod: GetAllRoomInformationModel, index: number) => {
         return (
-          <div className="col-sm-4 col-md-3 col-12 p-3 container" key={index}>
+          <div className="col-sm-4 col-md-3 col-12 p-3" key={index}>
             <NavLink
               className="card"
               style={{ overflow: "hidden" }}
@@ -51,11 +51,11 @@ export default function Home({}: Props) {
                 <img src={prod.hinhAnh} alt={prod.hinhAnh} />
               </div>
               <div className="card-body">
-                <p>{prod.tenPhong}</p>
+                <p className="ten_phong">{prod.tenPhong}</p>
                 <span>{prod.moTa}</span>
                 <p>
-                  ${prod.giaTien}
-                  <li>đêm</li>
+                  
+                ${prod.giaTien}/đêm
                 </p>
               </div>
             </NavLink>

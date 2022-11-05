@@ -1,125 +1,135 @@
-section#index{
+section#index {
   width: 100vw;
   overflow: hidden;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.video{
-    position: fixed;
-    bottom: -175%;
-    left: 50%;
-    transform: translateX(-50%);  
-    visibility: hidden;
-  }
-  .video video{
-    width: 800px;
-  }
-  .close{
-    position: absolute;
-    cursor: pointer;
-    text-transform: uppercase;
-    top: -40px;
-    right: 10px;
-    color: white;
-    font-size: 25px;
-  }
-  .active-hidden{
-    visibility: none;
-  }
-
-
-
-  .icon-play{
-    cursor: pointer;
-    background-color: #FC6447;
-    width: 55px;
-    height: 55px;
-    color: white;
-    display: inline-block;
-    line-height: 55px;
-    border-radius: 50%;
-    font-size: 18px;
-    border: 1px solid white;
-    animation-name: ripple;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite;
-    animation-fill-mode: both;
-  
-  }
-  
-  @keyframes ripple{
-    0%{
-      box-shadow: 0 0 0 0 #FFF4, 0 0 0 0 #FFF4;
-    }
-    70%{
-      box-shadow: 0 0 0 20px #FFF0, 0 0 0 40px #FFF0;
-    }
-    100%{
-      box-shadow: 0 0 0 0 #FFF1, 0 0 0 0 #FFF0;
-    }
-  }
-
   .bottom {
     .row {
-      .col-3 {
-        .card {
-          border: 0;
-          .bg-transparent {
-            img {
-              border-radius: 10px;
-              vertical-align: bottom;
-              object-fit: cover;
-              height: 300px;
-              width: 100%;
-              vertical-align: bottom;
-            }
+      .col-12 {
+        .bg-transparent{
+          img {
+            object-fit: cover;
           }
-          .card-body {
-            padding: 1rem 1rem 1rem 0;
-            p {
-              margin-bottom: 0.5rem;
-              color: #222222;
-              font-weight: 700;
-              font-size: 15px;
-              text-overflow: ellipsis;
-              overflow: clip;
-              -webkit-box-orient: vertical;
-              display: flex;
-            }
-            span {
-              margin-bottom: 0.5rem;
-              width: 284px;
-              overflow: clip;
-              font-size: 14px;
-              color: #717171;
-              text-overflow: ellipsis;
-              line-height: 25px;
-              -webkit-line-clamp: 3;
-              height: 75px;
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-            }
-            li{
-              margin-left: 3px;
-              color: #222222;
-              font-weight: 400;
-            }
+        }
+        .card-body {
+          height: 100%;
+          .ten_phong {
+            font-size: 18px;
+            font-weight: 500;
+            height: 80px;
+          }
+          span {
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            display: -webkit-box;
+          }
+          p{
+            font-size: 20px;
           }
         }
       }
     }
   }
+}
+
+.video {
+  position: fixed;
+  bottom: -175%;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+}
+.video video {
+  width: 800px;
+}
+.close {
+  position: absolute;
+  cursor: pointer;
+  text-transform: uppercase;
+  top: -40px;
+  right: 10px;
+  color: white;
+  font-size: 25px;
+}
+.active-hidden {
+  visibility: none;
+}
+
+.icon-play {
+  cursor: pointer;
+  background-color: #fc6447;
+  width: 55px;
+  height: 55px;
+  color: white;
+  display: inline-block;
+  line-height: 55px;
+  border-radius: 50%;
+  font-size: 18px;
+  border: 1px solid white;
+  animation-name: ripple;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 #fff4, 0 0 0 0 #fff4;
+  }
+  70% {
+    box-shadow: 0 0 0 20px #fff0, 0 0 0 40px #fff0;
+  }
+  100% {
+    box-shadow: 0 0 0 0 #fff1, 0 0 0 0 #fff0;
+  }
+}
+
+.bottom {
+  .row {
+    .col-3 {
+      .card {
+        border: 0;
+        .bg-transparent {
+          img {
+            border-radius: 10px;
+            vertical-align: bottom;
+            object-fit: cover;
+            height: 300px;
+            width: 100%;
+            vertical-align: bottom;
+          }
+        }
+        .card-body {
+          padding: 1rem 1rem 1rem 0;
+          p {
+            margin-bottom: 0.5rem;
+            color: #222222;
+            font-weight: 700;
+            font-size: 15px;
+            text-overflow: ellipsis;
+            overflow: clip;
+            -webkit-box-orient: vertical;
+            display: flex;
+          }
+          span {
+            margin-bottom: 0.5rem;
+            width: 284px;
+            overflow: clip;
+            font-size: 14px;
+            color: #717171;
+            text-overflow: ellipsis;
+            line-height: 25px;
+            -webkit-line-clamp: 3;
+            height: 75px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+          }
+          li {
+            margin-left: 3px;
+            color: #222222;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+}
