@@ -18,7 +18,7 @@ export default function Login({}: Props) {
     <section className="login">
       <div className="row">
         <div className="logo">
-          <NavLink to="/home"><img src="Image/logo.svg" alt="..." /></NavLink>
+          <NavLink to="/home="><img src="Image/logo.svg" alt="..." /></NavLink>
         </div>
         <div className="login-item">
           <div className="login-content">
