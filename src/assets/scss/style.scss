@@ -1,4 +1,14 @@
 @import "./base/base";
+@import "./themes/_variable.scss";
+
+@import "./pages/trangchu.scss";
+@import "./pages/danhsachphong.scss";
+@import "./pages/chitietphong.scss";
+@import "./pages/header.scss";
+@import "./base/_base.scss";
+
+@import "./pages/Login/Login.scss";
+@import "./pages/DetailUser/DetailUser.scss";
 
 @import "./component/Header/Header.scss";
 
@@ -10,10 +20,6 @@
 
 @import "./pages/Dashboard/Dashboard.scss";
 
-@import "./pages/Home/Home.scss";
-
-@import "./pages/Login/Login.scss";
-
 @import "./pages/Register/Register.scss";
 
 @import "./component/EditRoomInformation/EditRoomInformation.scss";
@@ -24,6 +30,4 @@
 
 @import "./component/EditLocationInformation/EditLocationInformation.scss";
 
-@import "./component/EditBookRoomManagement/EditBookRoomManagement.scss"
-
-
+@import "./component/EditBookRoomManagement/EditBookRoomManagement.scss";
