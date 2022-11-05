@@ -47,7 +47,7 @@ export const config = {
 export const { setCookie, getCookie, getStore, setStore, setStoreJson, getStoreJson, ACCESS_TOKEN, USER_LOGIN } = config;
 
 const DOMAIN = 'https://airbnbnew.cybersoft.edu.vn/api';
-const TOKEN_CYBERSOFT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJKYXZhIDE3IiwiSGV0SGFuU3RyaW5nIjoiMTkvMTIvMjAyMiIsIkhldEhhblRpbWUiOiIxNjcxNDA4MDAwMDAwIiwibmJmIjoxNjQ4NjU5NjAwLCJleHAiOjE2NzE1NTU2MDB9.OhFEeK7ExgP3U24hEq7GxmL5VzAjzaEPPeOZpaWzZGE';
+const TOKEN_CYBERSOFT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAzMCIsIkhldEhhblN0cmluZyI6IjIyLzAyLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTY3NzAyNDAwMDAwMCIsIm5iZiI6MTY0ODIyNzYwMCwiZXhwIjoxNjc3MTcxNjAwfQ.-t8lwJCJRmcg7R5XSaDSitfHVVjFTYi63aEmtnzN9SQ';
 
 /* Cấu hình request cho tất cả api - response cho tất cả kết quả từ api trả về */
 
@@ -59,7 +59,7 @@ export const http = axios.create({
 //Cấu hình request header
 http.interceptors.request.use(
     config => {
-        const {token} = getStoreJson(USER_LOGIN);
+        const token = getStoreJson(USER_LOGIN);
         config.headers = {
             ...config.headers,
             ['token']: token,
@@ -74,16 +74,16 @@ http.interceptors.request.use(
 )
 //Cấu hình kết quả trả về
 http.interceptors.response.use((response) => {
-    console.log(response);
+    // console.log(response);
     return response;
 }, err => {
     // const originalRequest = error.config;
-    console.log(err.response.status);
-    if(err.response.status === 400 || err.response.status === 404) {
+    console.log(err);
+    if(err.response.request.status === 400 || err.response.request.status === 404) {
         // history.push('/');
         return  Promise.reject(err);
     }
-    if(err.response.status === 401 || err.response.status === 403) {
+    if(err.response.request.status === 401 || err.response.request.status === 403) {
         alert('Token không hợp lệ ! Vui lòng đăng nhập lại !');
         // history.push('/login');
         return Promise.reject(err)

@@ -109,12 +109,11 @@ export const loginApi = (userLogin: UserLoginModel) => {
       if (userRole === "ADMIN"){
         history.push("/admin")
       } else {
-        history.push("/home")
+        history.push("/")
       }
       //Sau khi đăng nhập thành công thì dispatch action getProfile
     } catch (err: any) {
-      console.log(typeof err.response?.data.content);
-      alert(err.response?.data.content);
+      alert(err.response.data.content);
     }
   };
 };
