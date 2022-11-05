@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from "../../redux/configStore";
 import { Avatar, Button, DatePicker, Form, Image, Input, Select } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { getRoomInformationByLocationCodeApi } from "../../redux/reducers/roomReducer";
-import { getStoreJson, USER_LOGIN } from "../../util/setting";
+import { ACCESS_TOKEN, getStoreJson, USER_LOGIN } from "../../util/setting";
 import { UserOutlined, CheckOutlined } from "@ant-design/icons";
 import { GetUserRoleUserByIdApi } from "../../redux/reducers/userRoleUserReducer";
 type Props = {};
@@ -18,8 +18,9 @@ export default function Header({}: Props) {
   const { imageUser } = useSelector(
     (state: RootState) => state.userRoleUserReducer
   );
+  console.log(imageUser)
   useEffect(() => {
-    dispatch(GetUserRoleUserByIdApi(userLogin.user.id));
+    dispatch(GetUserRoleUserByIdApi(userLogin?.user.id));
   }, []);
 
   const dispatch: AppDispatch = useDispatch();
@@ -136,10 +137,10 @@ export default function Header({}: Props) {
                 <span className="bars">
                   <i className="fa-solid fa-bars"></i>
                 </span>
-                {imageUser ? (
+                {imageUser.length!==0 ? (
                   <Avatar size={20} src={imageUser.avatar} />
                 ) : (
-                  <Avatar size={20} icon={<UserOutlined />} />
+                  <Avatar size={20} icon={<UserOutlined />}><UserOutlined /></Avatar>
                 )}
               </button>
               <ul className="dropdown-menu">

@@ -58,8 +58,8 @@ export const http = axios.create({
 })
 //Cấu hình request header
 http.interceptors.request.use(
-    config => {
-        const token = getStoreJson(USER_LOGIN).token;
+    config => {let token = getStoreJson(USER_LOGIN);
+        token ?  token = token.token : token = token
         config.headers = {
             ...config.headers,
             ['token']: token,

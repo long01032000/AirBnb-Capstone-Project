@@ -103,7 +103,7 @@ export default function ChiTietPhong({}: Props) {
         <img src={hinhAnh} alt="" className="w-100" />
       </div>
       <div className="row">
-        <div className="col-6">
+        <div className="col-6 col-left">
           <div className="detail">
             <div className="thongTinPhong">
               <h5>Toàn bộ căn hộ condo, Chủ nhà Phong</h5>
@@ -226,7 +226,7 @@ export default function ChiTietPhong({}: Props) {
 
           <div className="comment">
             <div className="row">
-              <div className="col-6">
+              <div className="col-6 ">
                 <div className="comment-item">
                   <div className="avatar">
                     <div className="avt">
@@ -313,7 +313,7 @@ export default function ChiTietPhong({}: Props) {
           </div>
         </div>
         {/* end col-6 */}
-        <div className="col-6">
+        <div className="col-6 col-right">
           <div className="book-room">
             <div>
               <div className="price">

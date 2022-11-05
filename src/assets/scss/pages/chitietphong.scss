@@ -48,6 +48,13 @@ section#ChiTietPhong {
   }
   .row {
     margin-top: 20px;
+    .col-left{
+      width: 70%;
+    }
+    .col-right{
+      width: 30%;
+      padding-left: 25px;
+    }
     .col-6 {
       .detail {
         display: flex;
