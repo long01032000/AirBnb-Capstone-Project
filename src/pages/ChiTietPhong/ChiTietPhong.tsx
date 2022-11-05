@@ -26,9 +26,6 @@ export default function ChiTietPhong({}: Props) {
   const { imageUser } = useSelector(
     (state: RootState) => state.userRoleUserReducer
   );
-  useEffect(() => {
-    dispatch(GetUserRoleUserByIdApi(userLogin.user.id));
-  }, []);
   const { RangePicker } = DatePicker;
   const options: SelectProps["options"] = [];
   for (let i = 10; i < 36; i++) {
