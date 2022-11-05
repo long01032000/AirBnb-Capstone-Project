@@ -7,7 +7,7 @@ export default function Footer({}: Props) {
     <section id="footer" style={{backgroundColor: "#F7F7F7"}}>
       <div className="container">
         <div className="row">
-        <div className="col-3 ">
+        <div className="col-sm-3 col-6">
           <ul>
             <li className="fw-bolder">Giới thiệu</li>
             <li>Phương thức hoạt động của Airbnb</li>
@@ -22,7 +22,7 @@ export default function Footer({}: Props) {
             <li>Thư của nhà sáng lập</li>
           </ul>
         </div>
-        <div className="col-3">
+        <div className="col-sm-3 col-6">
           <ul>
             <li className="fw-bolder">Cộng đồng</li>
             <li>Hỗ trợ dân tị nạn Afghanistan</li>
@@ -30,7 +30,7 @@ export default function Footer({}: Props) {
             <li>Chống phân biệt đối xử</li>
           </ul>
         </div>
-        <div className="col-3">
+        <div className="col-sm-3 col-6">
           <ul>
             <li className="fw-bolder">Đón tiếp khách</li>
             <li>Thử đón tiếp khách</li>
@@ -41,7 +41,7 @@ export default function Footer({}: Props) {
             <li>Đón tiếp khách có trách nhiệm</li>
           </ul>
         </div>
-        <div className="col-3">
+        <div className="col-sm-3 col-6">
           <ul>
             <li className="fw-bolder">Airbnb</li>
             <li>Trang tin tức</li>
