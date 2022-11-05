@@ -45,8 +45,7 @@ section#header {
             border-radius: 5px;
             font-size: 12px;
           }
-      }
-       
+        }
       }
       .search2 {
         border-left: 1px solid gray;
@@ -61,7 +60,7 @@ section#header {
           white-space: nowrap;
           overflow: hidden;
         }
-        span{
+        span {
           font-size: 14px;
           line-height: 18px;
         }
@@ -79,7 +78,7 @@ section#header {
           white-space: nowrap;
           overflow: hidden;
         }
-        span{
+        span {
           font-size: 14px;
           line-height: 18px;
         }
@@ -97,7 +96,7 @@ section#header {
           white-space: nowrap;
           overflow: hidden;
         }
-        span{
+        span {
           font-size: 14px;
           line-height: 18px;
         }
@@ -113,10 +112,11 @@ section#header {
       }
     }
   }
+  
   .right {
     text-align: right;
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
     @media screen and (max-width: 767px) {
       width: 300px;
@@ -152,6 +152,9 @@ section#header {
       border-radius: 50px;
       width: 78px;
       margin-left: 30px;
+      :hover{
+        border-color: #f6e5e6;
+      }
       @media screen and (max-width: 767px) {
         display: none;
       }

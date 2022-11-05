@@ -52,12 +52,14 @@ export default function DanhSachPhong({}: Props) {
                   </div>
                   <div className="info">
                     <p className="ten-phong">{prod.tenPhong}</p>
+                    <span className="mota">{prod.moTa}</span>
                     <div className="util">
-                      <p>{prod.khach}khách . {prod.giuong}giường . {prod.phongTam}phòngTắm . Wifi . Bếp . Điều hòa . Máy giặt</p>
-                      <span className="price">
-                        ${prod.giaTien}
-                      </span>
-                      <span>/tháng</span>
+                      <span className="detail-item">{prod.giuong}giường</span>
+                      <p className="price">
+                        ${prod.giaTien} <li>/tháng</li>
+                        
+                      </p>
+                     
                       <div className="icon-hear">
                       <i className="fa-regular fa-heart"></i>
                       </div>

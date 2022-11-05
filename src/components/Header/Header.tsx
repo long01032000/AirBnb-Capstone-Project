@@ -9,9 +9,6 @@ import {  getRoomInformationByLocationCodeApi } from "../../redux/reducers/roomR
 type Props = {};
 
 export default function Header({}: Props) {
-  const { arrProductViTri } = useSelector(
-    (state: RootState) => state.productReducer
-  );
   const [form] = Form.useForm();
   const { Option } = Select;
   const dispatch: AppDispatch = useDispatch();
@@ -38,7 +35,9 @@ export default function Header({}: Props) {
             </div>
           </div>
           <div className="col-4 middle">
-            <Form form={form} onFinish={onFinish} scrollToFirstError>
+            <Form form={form} onFinish={onFinish} initialValues={{
+              id : "1"
+            }} scrollToFirstError>
               <div className="search">
                 <div className="search1">
                   <p>Địa điểm</p>
@@ -80,7 +79,7 @@ export default function Header({}: Props) {
                 </div>
                 <div className="button">
                   <Form.Item>
-                    <Button className="btn btn-danger" htmlType="submit">
+                    <Button className="btn btn-danger" htmlType="submit" style={{backgroundColor:"#ff385c", color: "white"}}>
                       <SearchOutlined size={30} />
                     </Button>
                   </Form.Item>

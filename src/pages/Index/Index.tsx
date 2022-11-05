@@ -11,6 +11,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import {
+  GetAllRoomInformationModel,
+  getRoomInformationApi,
+} from "../../redux/reducers/roomReducer";
 
 type Props = {};
 
@@ -20,48 +24,44 @@ export default function Home({}: Props) {
   const { arrProductViTri } = useSelector(
     (state: RootState) => state.productReducer
   );
+  const { arrRoomInformation } = useSelector(
+    (state: RootState) => state.roomReducer
+  );
+  // useEffect(() => {
+  //   const action = getProductApi();
+  //   dispatch(action);
+  // }, []);
   useEffect(() => {
-    const action = getProductApi();
+    const action = getRoomInformationApi();
     dispatch(action);
   }, []);
-  console.log(arrProductViTri);
 
   const renderProduct = () => {
-    return arrProductViTri?.map((prod: ProductModel, index: number) => {
-      return (
-        <div className="col-3 p-3 container" key={index}>
-          <div className="card" style={{ overflow: "hidden" }}>
-            <button
-              className="bg-transparent w-100"
-              onClick={() => {
-                navigate(`/DanhSachPhong`);
-              }}
+    return arrRoomInformation?.map(
+      (prod: GetAllRoomInformationModel, index: number) => {
+        return (
+          <div className="col-3 p-3 container" key={index}>
+            <NavLink
+              className="card"
+              style={{ overflow: "hidden" }}
+              to={`/ChiTietPhong/${prod.id}`}
             >
-              <img
-                src={prod.hinhAnh}
-                alt={prod.tinhThanh}
-                height="200px"
-                width="100%"
-                style={{ objectFit: "cover" }}
-              />
-            </button>
-            <div className="card-body">
-              <p style={{ fontSize: 20, fontWeight: 500 }}>{prod.tinhThanh}</p>
-              <p>{prod.tenViTri}</p>
-              <p>{prod.quocGia}</p>
-              <button
-                className="btn btn-outline-danger"
-                onClick={() => {
-                  navigate(`/ChiTietPhong/${prod.id}`);
-                }}
-              >
-                Xem Phòng
-              </button>
-            </div>
+              <div className="bg-transparent w-100">
+                <img src={prod.hinhAnh} alt={prod.hinhAnh} />
+              </div>
+              <div className="card-body">
+                <p>{prod.tenPhong}</p>
+                <span>{prod.moTa}</span>
+                <p>
+                  ${prod.giaTien}
+                  <li>đêm</li>
+                </p>
+              </div>
+            </NavLink>
           </div>
-        </div>
-      );
-    });
+        );
+      }
+    );
   };
   const settings = {
     dots: false,
@@ -91,7 +91,7 @@ export default function Home({}: Props) {
   };
 
   return (
-    <section id="index"  style={{ width: "100vw" }}>
+    <section id="index" className="" style={{ overflow: "hidden" }}>
       <div id="top" style={{ position: "relative" }}>
         <div
           id="carouselExampleIndicators"
@@ -193,7 +193,7 @@ export default function Home({}: Props) {
 
       <div
         id="middle"
-        className="text-dark pt-3"
+        className="text-dark pt-3 container"
         style={{
           width: "100%",
           height: 120,
@@ -266,7 +266,7 @@ export default function Home({}: Props) {
       </div>
       {/* end middle */}
 
-      <div className="bottom">
+      <div className="bottom container">
         <div className="row">{renderProduct()}</div>
       </div>
       {/* end bottom */}

@@ -52,3 +52,54 @@
       box-shadow: 0 0 0 0 #FFF1, 0 0 0 0 #FFF0;
     }
   }
+
+  .bottom {
+    .row {
+      .col-3 {
+        .card {
+          border: 0;
+          .bg-transparent {
+            img {
+              border-radius: 10px;
+              vertical-align: bottom;
+              object-fit: cover;
+              height: 300px;
+              width: 100%;
+              vertical-align: bottom;
+            }
+          }
+          .card-body {
+            padding: 1rem 1rem 1rem 0;
+            p {
+              margin-bottom: 0.5rem;
+              color: #222222;
+              font-weight: 700;
+              font-size: 15px;
+              text-overflow: ellipsis;
+              overflow: clip;
+              -webkit-box-orient: vertical;
+              display: flex;
+            }
+            span {
+              margin-bottom: 0.5rem;
+              width: 284px;
+              overflow: clip;
+              font-size: 14px;
+              color: #717171;
+              text-overflow: ellipsis;
+              line-height: 25px;
+              -webkit-line-clamp: 3;
+              height: 75px;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+            }
+            li{
+              margin-left: 3px;
+              color: #222222;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+    }
+  }

@@ -7,6 +7,7 @@ import { getProductRoom } from "../../redux/reducers/productReducer";
 import { Radio, Select } from "antd";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
 import type { SelectProps, RadioChangeEvent } from "antd";
+import { StarFilled, SafetyCertificateFilled,ShareAltOutlined ,HeartOutlined} from "@ant-design/icons";
 type Props = {};
 
 export default function ChiTietPhong({}: Props) {
@@ -40,7 +41,7 @@ export default function ChiTietPhong({}: Props) {
   const { arrProductRoom } = useSelector(
     (state: RootState) => state.productReducer
   );
-  // console.log(arrProductRoom);
+
   useEffect(() => {
     getRoomApi();
   }, [params.id]);
@@ -50,6 +51,17 @@ export default function ChiTietPhong({}: Props) {
   return (
     <section id="ChiTietPhong" className="container">
       <h2>{tenPhong}</h2>
+      <div className="nav-title">
+        
+          <StarFilled size={20} />
+          <li> {parseFloat(Math.random().toFixed(2)) * (5 - 4 + 1) + 3}</li>
+          <li className="dot"></li> <SafetyCertificateFilled />{" "}
+          <li className="chuNha">Chủ nhà siêu cấp</li>
+          <ul className="share"><ShareAltOutlined /><li>Chia sẻ</li></ul>
+          <ul className="like"> <HeartOutlined /><li>Lưu</li></ul>
+         
+      
+      </div>
       <div className="img">
         <img src={hinhAnh} alt="" className="w-100" />
       </div>
@@ -276,21 +288,37 @@ export default function ChiTietPhong({}: Props) {
             </div>
             <div className="book">
               <div className="date">
-              <Space direction="vertical" size={15}>
-                <RangePicker style={{width: 320, padding: 15, borderRadius: "20px 20px 0px 0px"}}/>
-              </Space>
+                <Space direction="vertical" size={15}>
+                  <RangePicker
+                    style={{
+                      width: 320,
+                      padding: 15,
+                      borderRadius: "20px 20px 0px 0px",
+                    }}
+                  />
+                </Space>
               </div>
               <div className="select">
-              <Select
-                size={size}
-                defaultValue="a1"
-                onChange={handleChange}
-                style={{ width: 320, padding: "10px 0", border: "1px solid #CFD6DC", borderRadius: "0px 0px 20px 20px" }}
-                options={options}
-                bordered={false}
-              />
+                <Select
+                  size={size}
+                  defaultValue="a1"
+                  onChange={handleChange}
+                  style={{
+                    width: 320,
+                    padding: "10px 0",
+                    border: "1px solid #CFD6DC",
+                    borderRadius: "0px 0px 20px 20px",
+                  }}
+                  options={options}
+                  bordered={false}
+                />
               </div>
-              <button className="btn btn-danger" style={{width: 320, marginTop: 15}}>Đặt phòng</button>
+              <button
+                className="btn btn-danger"
+                style={{ width: 320, marginTop: 15 }}
+              >
+                Đặt phòng
+              </button>
             </div>
           </div>
         </div>
