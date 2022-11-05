@@ -28,6 +28,14 @@ export default function DanhSachPhong({}: Props) {
   }, []);
 
 
+  
+  function setFavourite(index:number) {
+    let element = document.getElementById("iconFavourite" + index);
+    element?.classList.toggle("fa-solid");
+  }
+
+
+
   // ======================= //
   return (
     <section className="classRoom container">
@@ -61,7 +69,9 @@ export default function DanhSachPhong({}: Props) {
                       </p>
                      
                       <div className="icon-hear">
-                      <i className="fa-regular fa-heart"></i>
+                      <i className="fa-regular fa-heart" id={`iconFavourite` + index} onClick={()=>{
+                        setFavourite(index)
+                      }}></i>
                       </div>
                     </div>
                   </div>
