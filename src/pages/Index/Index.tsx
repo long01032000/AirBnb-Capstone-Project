@@ -35,6 +35,7 @@ export default function Home({}: Props) {
     const action = getRoomInformationApi();
     dispatch(action);
   }, []);
+  
 
   const renderProduct = () => {
     return arrRoomInformation?.map(
