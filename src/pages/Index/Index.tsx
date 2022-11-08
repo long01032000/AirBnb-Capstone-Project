@@ -51,11 +51,11 @@ export default function Home({}: Props) {
                 <img src={prod.hinhAnh} alt={prod.hinhAnh} />
               </div>
               <div className="card-body">
-                <p>{prod.tenPhong}</p>
+                <p className="roomName">{prod.tenPhong}</p>
                 <span>{prod.moTa}</span>
-                <p>
+                <p className="price d-flex">
                   ${prod.giaTien}
-                  <li>đêm</li>
+                  <li>/đêm</li>
                 </p>
               </div>
             </NavLink>

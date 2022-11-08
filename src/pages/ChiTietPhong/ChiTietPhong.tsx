@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../../redux/configStore";
-import { Avatar, DatePicker, Form, InputNumber, Space } from "antd";
+import { Avatar, DatePicker, Form, InputNumber, Result, Space } from "antd";
 import { getProductRoom } from "../../redux/reducers/productReducer";
 import { Radio, Select } from "antd";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
@@ -12,6 +12,11 @@ import {
   SafetyCertificateFilled,
   ShareAltOutlined,
   HeartOutlined,
+  HomeOutlined,
+  StarTwoTone,
+  FormatPainterOutlined,
+  CrownOutlined,
+  FileDoneOutlined,
 } from "@ant-design/icons";
 import moment from "moment";
 import { GetUserRoleUserByIdApi } from "../../redux/reducers/userRoleUserReducer";
@@ -75,7 +80,18 @@ export default function ChiTietPhong({}: Props) {
   useEffect(() => {
     getRoomApi();
   }, [params.id]);
-  let { hinhAnh, tenPhong, khach, phongNgu, phongTam, giuong } = arrProductRoom;
+  let { hinhAnh, tenPhong, khach, phongNgu, phongTam, giuong, moTa } =
+    arrProductRoom;
+  // let result = {name : ""};
+  // for (const [key, value] of Object.entries(arrProductRoom)) {
+  //   if (value === true) {
+  //    result=
+  //   }
+  // }
+  // console.log(result)
+  
+  // let {name} = result;
+  // console.log(name)
 
   // ========================== //
   return (
@@ -117,7 +133,7 @@ export default function ChiTietPhong({}: Props) {
           <div className="utilities">
             <div className="utilitie1">
               <div className="icon-util">
-                <i className="fa-solid fa-house"></i>
+                <HomeOutlined style={{ verticalAlign: 19 }} />
               </div>
               <div className="content">
                 <p>Toàn bộ nhà</p>
@@ -126,19 +142,26 @@ export default function ChiTietPhong({}: Props) {
             </div>
             <div className="utilitie2">
               <div className="icon-util">
-                <i className="fa-solid fa-house"></i>
+                <FormatPainterOutlined style={{ verticalAlign: 16 }} />
               </div>
               <div className="content">
                 <p>Vệ sinh tăng cường</p>
-                <span>
+                <span className="d-flex">
                   Chủ nhà đã cam kết thực hiện vệ sinh tăng cường 5 bước của
-                  Airbnb
+                  Airbnb.{" "}
+                  <NavLink
+                    to=""
+                    className="fw-bold ms-2 text-dark"
+                    style={{ textDecoration: "underline" }}
+                  >
+                    Hiển thị thêm
+                  </NavLink>
                 </span>
               </div>
             </div>
             <div className="utilitie3">
               <div className="icon-util">
-                <i className="fa-solid fa-house"></i>
+                <CrownOutlined style={{ verticalAlign: 19 }} />
               </div>
               <div className="content">
                 <p>Phong là chủ nhà siêu cấp</p>
@@ -147,7 +170,7 @@ export default function ChiTietPhong({}: Props) {
             </div>
             <div className="utilitie4">
               <div className="icon-util">
-                <i className="fa-solid fa-house"></i>
+                <FileDoneOutlined style={{ verticalAlign: 2 }} />
               </div>
               <div className="content">
                 <p>Miễn phí hủy trong 48 giờ</p>
@@ -160,21 +183,26 @@ export default function ChiTietPhong({}: Props) {
               <p>Dịch sang Tiếng Việt</p>
               <i className="fa-solid fa-spell-check"></i>
             </div>
-            <div className="lorem">
-              <p>
-                {" "}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Possimus assumenda repellendus, porro quis quos odio. Sequi
-                dolores cum illum, incidunt magni qui ipsum tenetur, vero sunt
-                at sapiente, corrupti temporibus!
-              </p>
+            <div className="lorem mb-4">
+              <p>{moTa}</p>
+              <span>
+                <NavLink
+                  to=""
+                  className="fw-bold text-dark"
+                  style={{ textDecoration: "underline" }}
+                >
+                  Hiển thị thêm
+                </NavLink>
+              </span>
             </div>
           </div>
 
           <div className="convenient">
             <h5>Tiện Nghi</h5>
             <div className="row">
+              {}
               <div className="col-6">
+
                 <div className="convenient-item">
                   <i className="fa-solid fa-kitchen-set"></i>
                   <p>Bếp</p>
@@ -312,17 +340,29 @@ export default function ChiTietPhong({}: Props) {
         {/* end col-6 */}
         <div className="col-6 col-right">
           <div className="book-room">
-            <div>
+            <div
+              className="d-flex"
+              style={{ justifyContent: "space-between", marginTop: 10 }}
+            >
               <div className="price">
-                <p>$44 / đêm</p>
+                <p className="d-flex fw-bold">
+                  $44 <li className="fw-normal ms-2">/ đêm</li>{" "}
+                </p>
               </div>
               <div className="star">
-                <i className="fa-solid fa-star"></i> 4,83 (18 đánh giá)
+                <li>
+                  {" "}
+                  <StarTwoTone
+                    style={{ verticalAlign: 2, fontSize: 15 }}
+                    twoToneColor="red"
+                  />{" "}
+                  4,83 (18 đánh giá)
+                </li>
               </div>
             </div>
             <div className="book">
               <Form
-              style={{marginTop: 15}}
+                style={{ marginTop: 15 }}
                 form={form}
                 name="add_bookRoom"
                 onFinish={onFinish}
@@ -345,21 +385,25 @@ export default function ChiTietPhong({}: Props) {
                   />
                 </Form.Item>
 
-                <Form.Item  name="soLuongKhach" style={{width: "100%"}}>
-                  <InputNumber style={{ width: '100%' }} placeholder="Guest" min={1} max={10} />
+                <Form.Item name="soLuongKhach" style={{ width: "100%" }}>
+                  <InputNumber
+                    style={{ width: "100%" }}
+                    placeholder="Guest"
+                    min={1}
+                    max={10}
+                  />
                 </Form.Item>
                 <Form.Item
-                className="text-center"
-                wrapperCol={{ span: 10, offset: 0 }}
-              >
-                 <button
-                  className="btn btn-danger"
-                  style={{ width: 320, marginTop: 0 }}
+                  className="text-center"
+                  wrapperCol={{ span: 10, offset: 0 }}
                 >
-                  Đặt phòng
-                </button>
-              </Form.Item>
-               
+                  <button
+                    className="btn btn-danger"
+                    style={{ width: 320, marginTop: 0 }}
+                  >
+                    Đặt phòng
+                  </button>
+                </Form.Item>
               </Form>
             </div>
           </div>

@@ -18,7 +18,7 @@ export default function Header({}: Props) {
   const { imageUser } = useSelector(
     (state: RootState) => state.userRoleUserReducer
   );
-  console.log(imageUser)
+  console.log(imageUser);
   useEffect(() => {
     dispatch(GetUserRoleUserByIdApi(userLogin?.user.id));
   }, []);
@@ -137,10 +137,17 @@ export default function Header({}: Props) {
                 <span className="bars">
                   <i className="fa-solid fa-bars"></i>
                 </span>
-                {imageUser.length!==0 ? (
+
+                {imageUser.length === 0 ? (
+                  <Avatar size={20} icon={<UserOutlined />}>
+                    <UserOutlined />
+                  </Avatar>
+                ) : imageUser.avatar !== "" ? (
                   <Avatar size={20} src={imageUser.avatar} />
                 ) : (
-                  <Avatar size={20} icon={<UserOutlined />}><UserOutlined /></Avatar>
+                  <Avatar size={20} icon={<UserOutlined />}>
+                    <UserOutlined />
+                  </Avatar>
                 )}
               </button>
               <ul className="dropdown-menu">
