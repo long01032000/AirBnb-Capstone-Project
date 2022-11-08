@@ -21,9 +21,9 @@ export default function AddLocationRender({}: Props) {
     wrapperCol: { span: 14 },
   };
 
-  const onFinish = (values: PostLocationModel) => {
-    dispatch(postLocationApi(values));
-  };
+    const onFinish = (values: PostLocationModel) => {
+      dispatch(postLocationApi(values));
+    };
 
   return (
     <section className="add-location">

@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../../redux/configStore";
-import { Avatar, DatePicker, Form, InputNumber, Result, Space } from "antd";
+import { Avatar, DatePicker, Form, InputNumber, Input, Button } from "antd";
 import { getProductRoom } from "../../redux/reducers/productReducer";
-import { Radio, Select } from "antd";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
-import type { SelectProps, RadioChangeEvent } from "antd";
+import { SelectProps, RadioChangeEvent, Comment, List, Tooltip } from "antd";
 import {
   StarFilled,
   SafetyCertificateFilled,
@@ -17,11 +16,17 @@ import {
   FormatPainterOutlined,
   CrownOutlined,
   FileDoneOutlined,
+  SkinOutlined,
 } from "@ant-design/icons";
 import moment from "moment";
-import { GetUserRoleUserByIdApi } from "../../redux/reducers/userRoleUserReducer";
+import {
+  GetCommentByRoomCode,
+  GetUserRoleUserByIdApi,
+} from "../../redux/reducers/userRoleUserReducer";
 import { getStoreJson, USER_LOGIN } from "../../util/setting";
 import { postBookRoomApi } from "../../redux/reducers/bookRoomReducer";
+import AddcommentRender from "../../components/AddCommentRender/AddcommentRender";
+import UserComment from "../../components/UserComment/UserComment";
 type Props = {};
 
 export default function ChiTietPhong({}: Props) {
@@ -52,6 +57,7 @@ export default function ChiTietPhong({}: Props) {
   const handleSizeChange = (e: RadioChangeEvent) => {
     setSize(e.target.value);
   };
+
   // ========================== //
 
   const getRoomApi = () => {
@@ -69,8 +75,6 @@ export default function ChiTietPhong({}: Props) {
       maNguoiDung: userLogin.user.id,
       ngayDen: moment(fieldsValue["ngayDen"]),
       ngayDi: moment(fieldsValue["ngayDi"]),
-      // 'range-picker': [rangeValue[0].format('YYYY-MM-DD'), rangeValue[1].format('YYYY-MM-DD')]
-      // 'ngayDi': moment([rangeValue[0].format('YYYY-MM-DD'), rangeValue[1].format('YYYY-MM-DD')]),
     };
     dispatch(postBookRoomApi(values));
     console.log("Received values of form: ", values);
@@ -79,21 +83,65 @@ export default function ChiTietPhong({}: Props) {
 
   useEffect(() => {
     getRoomApi();
+    dispatch(GetCommentByRoomCode(params.id));
   }, [params.id]);
-  let { hinhAnh, tenPhong, khach, phongNgu, phongTam, giuong, moTa } =
-    arrProductRoom;
-  // let result = {name : ""};
-  // for (const [key, value] of Object.entries(arrProductRoom)) {
-  //   if (value === true) {
-  //    result=
-  //   }
-  // }
-  // console.log(result)
-  
-  // let {name} = result;
-  // console.log(name)
+  let {
+    hinhAnh,
+    tenPhong,
+    khach,
+    phongNgu,
+    phongTam,
+    giuong,
+    moTa,
+    mayGiat,
+    banLa,
+    tivi,
+    dieuHoa,
+    wifi,
+    bep,
+    doXe,
+    hoBoi,
+    banUi,
+  } = arrProductRoom;
+  /////////////////////////
+  const { TextArea } = Input;
+  const data = [
+    {
+      actions: [<span key="comment-list-reply-to-0">Reply to</span>],
+      author: "Han Solo",
+      avatar: "https://joeschmoe.io/api/v1/random",
+      content: (
+        <p>
+          We supply a series of design principles, practical patterns and high
+          quality design resources (Sketch and Axure), to help people create
+          their product prototypes beautifully and efficiently.
+        </p>
+      ),
+      datetime: (
+        <Tooltip title="2016-11-22 11:22:33">
+          <span>8 hours ago</span>
+        </Tooltip>
+      ),
+    },
+    {
+      actions: [<span key="comment-list-reply-to-0">Reply to</span>],
+      author: "Han Solo",
+      avatar: "https://joeschmoe.io/api/v1/random",
+      content: (
+        <p>
+          We supply a series of design principles, practical patterns and high
+          quality design resources (Sketch and Axure), to help people create
+          their product prototypes beautifully and efficiently.
+        </p>
+      ),
+      datetime: (
+        <Tooltip title="2016-11-22 10:22:33">
+          <span>9 hours ago</span>
+        </Tooltip>
+      ),
+    },
+  ];
 
-  // ========================== //
   return (
     <section id="ChiTietPhong" className="container">
       <h2>{tenPhong}</h2>
@@ -200,141 +248,132 @@ export default function ChiTietPhong({}: Props) {
           <div className="convenient">
             <h5>Tiện Nghi</h5>
             <div className="row">
-              {}
               <div className="col-6">
-
                 <div className="convenient-item">
-                  <i className="fa-solid fa-kitchen-set"></i>
-                  <p>Bếp</p>
+                  {Boolean(bep) === true ? (
+                    <>
+                      <i className="fa-solid fa-kitchen-set"></i>
+                      <p>Bếp</p>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="convenient-item">
-                  <i className="fa-solid fa-tv"></i>
-                  <p>TV với truyền hình cap tiêu chuẩn</p>
+                  {Boolean(tivi) === true ? (
+                    <>
+                      {" "}
+                      <i className="fa-solid fa-tv"></i>
+                      <p>TV với truyền hình cap tiêu chuẩn</p>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="convenient-item">
-                  <i className="fa-solid fa-snowflake"></i>
-                  <p>Điều hòa nhiệt độ</p>
+                  {Boolean(dieuHoa) === true ? (
+                    <>
+                      {" "}
+                      <i className="fa-solid fa-snowflake"></i>
+                      <p>Điều hòa nhiệt độ</p>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="convenient-item">
-                  <i className="fa-solid fa-fire"></i>
-                  <p>Lò sưởi trong nhà</p>
+                  {Boolean(mayGiat) === true ? (
+                    <>
+                      {" "}
+                      <i>
+                        <SkinOutlined style={{ verticalAlign: 4 }} />
+                      </i>
+                      <p>Máy Giặt</p>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="convenient-item">
-                  <i className="fa-solid fa-p"></i>
-                  <p>Bãi đỗ xe thu phí nằm ngoài công viên</p>
+                  {Boolean(doXe) === true ? (
+                    <>
+                      {" "}
+                      <i className="fa-solid fa-p"></i>
+                      <p>Bãi đỗ xe thu phí nằm ngoài công viên</p>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
               <div className="col-6">
                 <div className="convenient-item">
-                  <i className="fa-solid fa-wifi"></i>
-                  <p>wifi</p>
+                  {Boolean(wifi) === true ? (
+                    <>
+                      {" "}
+                      <i className="fa-solid fa-wifi"></i>
+                      <p>wifi</p>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="convenient-item">
-                  <i className="fa-solid fa-elevator"></i>
-                  <p>Thang máy</p>
+                  {Boolean(hoBoi) === true ? (
+                    <>
+                      {" "}
+                      <i className="fa-solid fa-person-swimming"></i>
+                      <p>Hồ Bơi</p>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="convenient-item">
-                  <i className="fa-regular fa-square"></i>
-                  <p>Sân hoặc ban công</p>
+                  {Boolean(banUi) === true ? (
+                    <>
+                      {" "}
+                      <i className="fa-regular fa-square"></i>
+                      <p>Bàn Ủi</p>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="convenient-item">
-                  <i className="fa-solid fa-bridge-water"></i>
-                  <p>Tủ lạnh</p>
-                </div>
-                <div className="convenient-item">
-                  <i className="fa-solid fa-calendar"></i>
-                  <p>Cho phép ở dài hạn</p>
+                  {Boolean(banLa) === true ? (
+                    <>
+                      {" "}
+                      <i className="fa-solid fa-bridge-water"></i>
+                      <p>Bàn Là</p>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
+              <Button
+                className="btn btn-load-more"
+                style={{
+                  width: 247,
+                  height: "100%",
+                  border: "1px solid #222",
+                  borderRadius: 8,
+                  fontSize: 16,
+                  fontWeight: 600,
+                  marginBottom :25,
+                  marginLeft: 10
+                }}
+              >
+                Hiển thị tất cả 24 tiện nghi
+              </Button>
             </div>
           </div>
-
-          <div className="comment">
-            <div className="row">
-              <div className="col-6 ">
-                <div className="comment-item">
-                  <div className="avatar">
-                    <div className="avt">
-                      <img src="https://i.pravatar.cc/50" alt="" />
-                    </div>
-                    <div className="prf">
-                      <p className="name">Thu Hai</p>
-                      <p>tháng 6 năm 2022</p>
-                    </div>
-                  </div>
-                  <div className="content-comment">
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Eaque ipsam autem beatae? Velit modi veniam quos
-                      reprehenderit quibusdam eaque aliquid mollitia cumque
-                    </p>
-                  </div>
-                </div>
-                <div className="comment-item mt-5">
-                  <div className="avatar">
-                    <div className="avt">
-                      <img src="https://i.pravatar.cc/50" alt="" />
-                    </div>
-                    <div className="prf">
-                      <p className="name">Tam</p>
-                      <p>tháng 6 năm 2022</p>
-                    </div>
-                  </div>
-                  <div className="content-comment">
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Eaque ipsam autem beatae? Velit modi veniam quos
-                      reprehenderit quibusdam eaque aliquid mollitia cumque
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-6">
-                <div className="comment-item">
-                  <div className="avatar">
-                    <div className="avt">
-                      <img src="https://i.pravatar.cc/50" alt="" />
-                    </div>
-                    <div className="prf">
-                      <p className="name">Kaito</p>
-                      <p>tháng 6 năm 2022</p>
-                    </div>
-                  </div>
-                  <div className="content-comment">
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Eaque ipsam autem beatae? Velit modi veniam quos
-                      reprehenderit quibusdam eaque aliquid mollitia cumque
-                    </p>
-                  </div>
-                </div>
-                <div className="comment-item mt-5">
-                  <div className="avatar">
-                    <div className="avt">
-                      <img src="https://i.pravatar.cc/50" alt="" />
-                    </div>
-                    <div className="prf">
-                      <p className="name">Kamira</p>
-                      <p>tháng 6 năm 2022</p>
-                    </div>
-                  </div>
-                  <div className="content-comment">
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Eaque ipsam autem beatae? Velit modi veniam quos
-                      reprehenderit quibusdam eaque aliquid mollitia cumque
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div className="add-comment">
-            <div className="avatar">
-              <img src="https://i.pravatar.cc/50" alt="" />
+            <div className="add-comment-content">
+              <UserComment />
+              <AddcommentRender />
             </div>
-            <textarea name="" id="" cols={100} rows={5}></textarea>
           </div>
         </div>
         {/* end col-6 */}

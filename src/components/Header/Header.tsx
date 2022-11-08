@@ -18,7 +18,6 @@ export default function Header({}: Props) {
   const { imageUser } = useSelector(
     (state: RootState) => state.userRoleUserReducer
   );
-  console.log(imageUser);
   useEffect(() => {
     dispatch(GetUserRoleUserByIdApi(userLogin?.user.id));
   }, []);

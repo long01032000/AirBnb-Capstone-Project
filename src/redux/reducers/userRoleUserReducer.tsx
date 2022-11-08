@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ACCESS_TOKEN, getStore, getStoreJson, http, setCookie, setStore, setStoreJson, USER_LOGIN } from "../../util/setting";
 import { AppDispatch } from "../configStore";
 import { history } from "../../index";
-import { Modal } from "antd";
+import { Modal, notification } from "antd";
 
 export interface UserRegisterModel {
   id: number;
@@ -30,6 +30,15 @@ export interface GetAllUserModel {
   role: string;
 }
 
+export interface CommentUser {
+  id:              number;
+  maPhong:         number;
+  maNguoiBinhLuan: number;
+  ngayBinhLuan:    string;
+  noiDung:         string;
+  saoBinhLuan:     number;
+}
+
 export interface AddUserModel extends UserRegisterModel {}
 
 export interface UpdateUserModel extends UserRegisterModel {}
@@ -52,6 +61,7 @@ const initialState: any = {
   arrUser: [],
   room: [],
   imageUser: [],
+  comment: []
 };
 
 const userRoleUserReducer = createSlice({
@@ -77,10 +87,13 @@ const userRoleUserReducer = createSlice({
     getRoomAction:(state, action: PayloadAction<any>) => {
       state.room = action.payload;
     },
+    getCommentAction: (state, action: PayloadAction<any>) => {
+      state.comment = action.payload;
+    },
   },
 });
 
-export const { getAllUserAction, deleteUserAction, searchUserAction,getUserByIdAction,getRoomAction } =
+export const { getAllUserAction, deleteUserAction, searchUserAction,getUserByIdAction,getRoomAction,getCommentAction } =
 userRoleUserReducer.actions;
 
 export default userRoleUserReducer.reducer;
@@ -136,6 +149,44 @@ export const HistoryBookRoomApi = (room : any) => {
       const userLogin = getStoreJson(USER_LOGIN).user;
       const result = await http.get(`/dat-phong/lay-theo-nguoi-dung/${userLogin.id}`,room);
       const action = getRoomAction(result.data.content);
+      dispatch(action);
+      
+    } catch (err: any) {
+        alert(err.response.data.message);
+    }
+  }
+}
+
+export const PostComment = (comment : CommentUser) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const openNotificationWithIconSuccess = (type: "success") => {
+        notification[type]({
+          message: "Success",
+          description: "Add Comment Success",
+        });
+      };
+      const result = await http.post(`/binh-luan`,comment);
+      openNotificationWithIconSuccess("success");
+    } catch (err: any) {
+      const openNotificationWithIconError = (type: "error") => {
+        notification[type]({
+          message: "Error",
+          description: err.response.data.content,
+        });
+      };
+      openNotificationWithIconError("error");
+    }
+  }
+}
+
+
+export const GetCommentByRoomCode = (roomCode : any) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+     
+      const result = await http.get(`/binh-luan/lay-binh-luan-theo-phong/${roomCode}`);
+      const action = getCommentAction(result.data.content);
       dispatch(action);
       
     } catch (err: any) {
